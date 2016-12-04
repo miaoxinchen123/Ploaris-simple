@@ -1,13 +1,14 @@
 package com.ebook.polaris.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Util {
 
-	public static String ReadFile(String Path){
+	public static String ReadFile(File Path){
 		BufferedReader reader = null;
 		String laststr = "";
 		try{
