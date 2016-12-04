@@ -75,12 +75,6 @@ pageEncoding="UTF-8"%>
 
 <div id="header">
 	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="<%=request.getContextPath()%>/images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="login" class="header-button">登录</div><div id="register" class="header-button">注册</div><div id="logout" class="header-button">注销</div>
-	<div id="user-center">个人中心</div>
-	<div id="credits"><span id="credits-amount"></span> 积分</div>
-	<div id="credits-topup" class="header-button">充值</div>
-	<div id="cart">购物车 <b style="color:white" id="cart-amount"></b> 件</div>
-	<div id="contact-us">联系我们</div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
