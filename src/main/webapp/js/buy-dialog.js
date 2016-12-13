@@ -61,7 +61,7 @@ function buyWithAlipayOrWeixin(type) {
 			orderId: id, //订单号，
 			merchId: 'm1609280024',
 			channel: 'wx_pay_pub_scan',
-			amount: '0.01',
+			amount: document.getElementById("order-price").innerText.split("¥ ")[1],
 			subject: 'NileScienceEbook',
 			notifyUrl: 'http://www.nbkyzl.com/listen.html'	//妙妙你修改这里，然后后台监听就行。这个url随便你修改
 		});
