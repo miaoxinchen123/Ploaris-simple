@@ -112,28 +112,27 @@ $(function () {
 		<div style="width:900px; margin-left:auto; margin-right:auto;">
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>阅读器下载</span></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Adobe Reader</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Calibre</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Digital Editions</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">iReader</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Adobe Reader</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Calibre</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Digital Editions</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">iReader</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>帮助中心</span></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">支付问题</a></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">电子书文件问题</a></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">其他问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">支付问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">电子书文件问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">其他问题</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>QQ售前客服</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>QQ售后客服</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><span>意见反馈</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售前客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售后客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">意见反馈</a></div>
 			</div>
 			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>
 	</div>
 </div>
+
 </body>
-
-
 </html>

@@ -10,20 +10,17 @@ pageEncoding="UTF-8"%>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico">
 <link rel="bookmark icon" href="<%=request.getContextPath()%>/images/favicon.ico">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/ui/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/global.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/list.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buy-form.css" />
 
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery-ui.js"></script>
-<script src="<%=request.getContextPath()%>/js/account-dialog-control.js"></script>
 <script src="<%=request.getContextPath()%>/js/list.js"></script>
 <script src="<%=request.getContextPath()%>/js/buy-dialog.js"></script>
+<script src="<%=request.getContextPath()%>/js/pcjssdk.3.0.js"></script>
+
 <script>
-
-
 	$(function () {
 		$("#search-button-index").on("click", function() {
 			var searchText = $("#search-input").val();
@@ -48,20 +45,6 @@ pageEncoding="UTF-8"%>
 		$("#f_ation").submit();
 	}
 	
-	/*
-	 * 立即购买
-	 */
-	 function buyNow(md5,title,authors,price,size,covelUrl){
-		 $("#md5_hidden").val(md5);
-		 $("#title_hidden").val(title);
-		 $("#authors_hidden").val(authors);
-		 $("#price_hidden").val(price);
-		 $("#size_hidden").val(size);
-		 $("#covelUrl_hidden").val(covelUrl);
-		 $("#tradeType_hidden").val("directBuy");
-		 dialogBuy.dialog("open");
-	 }
-	
 	 /*
 	 * 添加购物车
 	 */
@@ -69,123 +52,72 @@ pageEncoding="UTF-8"%>
 		 
 		 var orderData={"tradeType":"addCart","md5": md5,"title":title,"authors":authors,"price": Number(price),"size":Number(size),"coverUrl":covelUrl};
 		 $.ajax({  
-		        type:"POST",  
-		        dataType: 'text',  
-		        contentType:"application/json",             
-		        data:JSON.stringify(orderData),  
-		        url:"user/addCart.htm",  
-		        error:function(data){  
-		            alert("出错了！！:"+data);  
-		        },  
-		        success:function(data){
-		        	var result = eval(data);
-		        	//修改购物车上数量
-		        	if(result == "203"){
-		        		dialogLogin.dialog("open");
-		        		$("#email-login").val("");
-		        	  	$("#password-register").val("");
-		        	  	$("#password-register2").val("");
-		        	}else if(result == "successAdd"){
-		        		alert("成功添加")
-			        	var cartCount = parseInt($("#cart-amount").text())+1;
-			        	$("#cart-amount").text(cartCount)
-		        	}else{
-		        		alert(result);
-		        	}
-		        }
-	        });   
+	        type:"POST",  
+	        dataType: 'text',  
+	        contentType:"application/json",             
+	        data:JSON.stringify(orderData),  
+	        url:"user/addCart.htm",  
+	        error:function(data){  
+	            alert("出错了！！:"+data);  
+	        },  
+	        success:function(data){
+	        	var result = eval(data);
+	        	//修改购物车上数量
+	        	if(result == "203"){
+	        		dialogLogin.dialog("open");
+	        		$("#email-login").val("");
+	        	  	$("#password-register").val("");
+	        	  	$("#password-register2").val("");
+	        	}else if(result == "successAdd"){
+	        		alert("成功添加")
+		        	var cartCount = parseInt($("#cart-amount").text())+1;
+		        	$("#cart-amount").text(cartCount)
+	        	}else{
+	        		alert(result);
+	        	}
+	        }
+        });   
 	 }
-	
-	
-	
-	
 </script>
 </head>
 
 <body>
-<div id="mydiv"></div>
-<div id="buy-form" title="积分充值">
-<form>
-    <fieldset>
-		<label for="alipay-id">支付宝交易号/流水号</label>
-      	<input type="text" name="alipay-id" id="alipay-id" value="" class="text ui-widget-content ui-corner-all">
-    </fieldset>
-     
-    <p class="dialog-sub-title">第一步 付款</p>
-     
-	<div id="dialog-step-1-1">
-		<div id="alipay-text">扫一扫二维码，付款<span id="dialog-price-1"></span></div>
-     	<div id="alipay-graph">	<img src="<%=request.getContextPath()%>/images/alipay_graph.jpg" alt=""/></div>
-     </div>
-     <div id="dialog-step-1-2">或者</div>
-     <div id="dialog-step-1-3">
-     	<div id="transfer-text">转账到支付宝付款<span id="dialog-price-2"></span><br>nilescience@qq.com</div>
-     	<div id="alipay-transfer"><img src="<%=request.getContextPath()%>/images/alipay_transfer.png" alt=""/></div>
-   	</div>
-     
-   	<p class="dialog-sub-title">第二步 填写交易号/流水号</p>
-   	<div id="dialog-step-2">
-		<p>款成功后，请填写支付宝的交易号/流水号，点击确认即可。</p>
-   		<p>样本：20160402200040022200140041083666</p>
-   	</div>
-   <input type="hidden" id="md5_hidden" value=""> 
-   <input type="hidden" id="title_hidden" value=""> 
-   <input type="hidden" id="authors_hidden" value=""> 
-   <input type="hidden" id="size_hidden" value=""> 
-   <input type="hidden" id="price_hidden" value=""> 
-   <input type="hidden" id="covelUrl_hidden" value=""> 
- 	<input type="hidden" id="tradeType_hidden" value=""> 
-</form>
+<div style="position: fixed;z-index: 99999;">
+	<div id="buy-form" title="填写信息" style="font-size:15px; position: fixed;z-index: 999999; display:none;">
+		<div style="position: fixed; top: 0px;left: 0px;width: 500px;height: 350px;overflow:hidden; border:solid 1px rgb(229,229,229); border-radius:8px; background:white;" >
+			<div id="dialog-sub-title"">填写订单信息</div>
+			<div class="buy-form-wrapper-div">
+				<div class="buy-form-left">收货人邮箱</div>
+				<input type="text" id="receive" value="" class="buy-form-input" />
+			</div>
+			<div class="buy-form-wrapper-div">
+				<div class="buy-form-left">电子书名称</div>
+				<div type="text" id="order-name"></div>
+			</div>
+			<div class="buy-form-wrapper-div">
+				<div class="buy-form-left">发货时间</div>
+				<div type="text" id="send-time"></div>
+			</div>
+			<div class="buy-form-wrapper-div" style="border-bottom:double #BBB;">
+				<div class="buy-form-left">价格</div>
+				<div type="text" id="order-price"></div>
+				<span id="price-comment"></span>
+			</div>	
+			
+			<div id="aliPayButton" class="order-button" onclick="buyWithAlipayOrWeixin('alipay')">支付宝支付</div>
+			<div id="weixinButton" class="order-button" onclick="buyWithAlipayOrWeixin('weixin')">微信支付</div>
+			<div id="cancel" class="order-button" onclick="canelBuy()">取 消</div>
+		</div>
+	</div>
 </div>
 
-<div id="dialog-register-form" title="注册成为新用户">
-  <p class="validate-tips-register">请填写以下信息</p>
-  <form>
-    <fieldset>
-      <label for="email-register">邮箱</label>
-      <input type="text" name="email-register" id="email-register" value="用于发货, 请您仔细填写" class="text ui-widget-content ui-corner-all" onfocus="focusEmailLoginInput()" onblur="blurEmailLoginInput()">
-      <label for="password-register">密码</label>
-      <input type="password" name="password-register" id="password-register" value="" class="text ui-widget-content ui-corner-all">
-      <label for="password-register-2">确认密码</label>
-      <input type="password" name="password-register-2" id="password-register-2" value="" class="text ui-widget-content ui-corner-all">
-     </fieldset>
-  </form>
-</div>
-
-<div id="dialog-login-form" title="登录 Nile Science">
-  <p class="validate-tips-login">请填写以下信息</p>
-  <form>
-    <fieldset>
-      <label for="email-login">邮箱</label>
-      <input type="text" name="email-login" id="email-login" value="" class="text ui-widget-content ui-corner-all">
-      <label for="password-login">密码</label>
-      <input type="password" name="password-login" id="password-login" value="" class="text ui-widget-content ui-corner-all">
-      <div class="register-small-button" id="forget-password">忘记密码</div>
-	  <div class="register-small-button" id="register-now">立即注册</div>
-     </fieldset>
-  </form>
-</div>
-
-<div id="dialog-contact-us-form" title="联系我们">
-  	<form>
-    	<fieldset>
-      		<label for="contact-type">联系内容</label>
-      		<select id="contact-type-option">
-   				<option value="search">检索不到我要的</option>
-				<option value="resend">申请重新发货</option>
-				<option value="suggestion">意见反馈</option>
-			</select>
-      		<label for="order-id">订单编号</label>
-      		<input type="text" name="order-id" id="order-id" value="" class="text ui-widget-content ui-corner-all">
-      		<label for="contact-detail">您的留言</label>
-      		<textarea name="contact-detail" id="contact-detail" cols="20" rows="5"></textarea>
-     </fieldset>
-  </form>
+<div style="position: fixed;z-index: 99999;">
+	<a href="#top"><div style="position: fixed; top: 85%;right: 45px;width: 48px;height: 48px;overflow:hidden;background-image:url('./images/gotop.png');"></div></a>
 </div>
 
 <div id="header">
 	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="contact-us">联系我们</div>
+	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
@@ -207,7 +139,7 @@ pageEncoding="UTF-8"%>
 
 <div id="result-overview">
 	<div id="fh" class="n_l">
-		<span>以下呈现的是“${searchinput}”的精选结果</span>
+		<span style="padding-left:152px;">以下呈现的是“${searchinput}”的精选结果</span>
 	</div>
 </div>
 
@@ -285,22 +217,22 @@ pageEncoding="UTF-8"%>
 		<div style="width:900px; margin-left:auto; margin-right:auto;">
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>阅读器下载</span></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Adobe Reader</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Calibre</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Digital Editions</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">iReader</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Adobe Reader</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Calibre</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Digital Editions</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">iReader</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>帮助中心</span></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">支付问题</a></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">电子书文件问题</a></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">其他问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">支付问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">电子书文件问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">其他问题</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>QQ售前客服</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>QQ售后客服</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><span>意见反馈</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售前客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售后客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">意见反馈</a></div>
 			</div>
 			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>

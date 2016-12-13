@@ -264,6 +264,7 @@
 			font-size: 13px;
 			line-height: 35px;
 			color:rgb(80,80,80);
+			cursor:text;
 		}
 	
 		#footer #footer-wrapper #footer-mobile-graph {

@@ -1,116 +1,82 @@
 /*
- * 标记用户购买的类型,只可以取以下两种值
- * 1）积分充值：credits-0,credits-1,credits-2,credits-3,credits-4
- * 2）单件商品：md5值
- * 例如，用户选中购物车中的两件商品，点击结算时，buyList=["第一件商品的md5", "第二件商品的md5"]
+ * 立即购买
  */
-var buyList = new Array();
-
-var totalPrice = 0;	//一次交易的价格，可能是单件商品，也可能是一个商品的数组，也可以是积分充值。
-
-$(function() {
-	function buyWithAlipay() {
-		$("#alipay-id").removeClass("ui-state-error");		
-		var reg = new RegExp("\^[0-9]*$");
-		if(reg.test($("#alipay-id").val())&& $("#alipay-id").val().length == 32) {
-			var price = Number($("#price_hidden").val());
-			var size = Number($("#size_hidden").val());
-			var orderData={"tradeType":$("#tradeType_hidden").val(),"md5": $("#md5_hidden").val(),"title": $("#title_hidden").val(),"price": price,"size":size,"coverUrl": $("#covelUrl_hidden").val(),"bizNo":$("#alipay-id").val()};
-			//直接购买Ajax
-			$.ajax({
-		  		type:"POST",  
-		        dataType: 'text',  
-		        contentType:"application/json",             
-		        data:JSON.stringify(orderData),  
-		        url:"user/addCart.htm",  
-		        complete: function(data){
-		        	alert(eval(data.responseText));
-		        	dialogBuy.dialog("close");
-		        } 
-	        });  
+ function buyNow(md5,title,authors,price,size,covelUrl){
+		var currentTime = new Date();
+		var year = (new Date(currentTime.valueOf() + 1000 * 1800)).getYear() + 1900;
+		var month = (new Date(currentTime.valueOf() + 1000 * 1800)).getMonth() + 1;
+		var date = (new Date(currentTime.valueOf() + 1000 * 1800)).getDate();
+		var hour = (new Date(currentTime.valueOf() + 1000 * 1800)).getHours(); 
+		var minute = (new Date(currentTime.valueOf() + 1000 * 1800)).getMinutes();
+		
+		document.getElementById("send-time").innerText = month + "月" + date + "日" + hour + "时" + minute + "分之前发至邮箱";
+	 	document.getElementById("order-name").innerText = title;
+	 	document.getElementById("order-price").innerText = "¥ " + price;
+		
+		var winWidth;
+		var winHeight;
+		if(window.innerWidth) {
+			winWidth = window.innerWidth;
 		}
-		else {
-			$("#alipay-id").addClass("ui-state-error");
-	  		$("#alipay-id").val("请输入正确的交易号")
-	  		setTimeout(function() {
-	  			$("#alipay-id").removeClass("ui-state-error", 1500);
-	  		}, 500);
+		else if((document.body) && (document.body.clientWidth)) {
+			winWidth = document.body.clientWidth;		
 		}
+		
+		if(window.innerHeight) {
+			winHeight = window.innerHeight;		
+		}
+		else if((document.body) && (document.body.clientHeight)) {
+			winHeight = document.body.clientHeight;		
+		}
+		if(document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+			winHeight = document.documentElement.clientHeight;
+			winWidth = document.documentElement.clientWidth;
+		}
+		document.getElementById("buy-form").children[0].style.top = ((window.innerHeight - 292) / 2) + "px";
+		document.getElementById("buy-form").children[0].style.left = ((winWidth - 500) / 2) + "px";
+		document.getElementById("buy-form").style.display = "block";
+ }
+ 
+function canelBuy() {
+	document.getElementById("buy-form").style.display="none";
+}
+
+
+function buyWithAlipayOrWeixin(type) {
+	if($("#receive").val().length > 100 
+			|| $("#receive").val().length < 4
+			|| $("#receive").val().indexOf(".") < 0 
+			|| $("#receive").val().indexOf("@") < 0) {
+		alert("请您填写正确的邮箱");
+		return;
 	}
 	
+	var id = Date.now();
 	
-	function creditsWithAlipay() {
-		alert("dada");
-		$("#alipay-id").removeClass("ui-state-error");		
-		var reg = new RegExp("\^[0-9]*$");
-		if(reg.test($("#alipay-id").val())&& $("#alipay-id").val().length == 32) {
-			var orderData={"bizNo":$("#alipay-id").val()};
-			//直接购买Ajax
-			$.ajax({
-		  		type:"POST",  
-		        dataType: 'text',  
-		        contentType:"application/json",             
-		        data:JSON.stringify(orderData),  
-		        url:"creditsBuy.htm",  
-		        complete: function(data){
-		        	alert(eval(data.responseText));
-		        	dialogCreditsBuy.dialog("close");
-		        } 
-	        });  
-		}
-		else {
-			$("#alipay-id").addClass("ui-state-error");
-	  		$("#alipay-id").val("请输入正确的交易号")
-	  		setTimeout(function() {
-	  			$("#alipay-id").removeClass("ui-state-error", 1500);
-	  		}, 500);
-		}
+	if(type == "weixin") {
+		FUQIANLAPC.init({
+			isCashierDesk: false,
+			appId: '97rpOtHVU1LjJEoy6Pbp0w',
+			clientIp: '127.0.0.1',
+			orderId: id, //订单号，
+			merchId: 'm1609280024',
+			channel: 'wx_pay_pub_scan',
+			amount: '0.01',
+			subject: 'NileScienceEbook',
+			notifyUrl: 'http://www.nbkyzl.com/listen.html'	//妙妙你修改这里，然后后台监听就行。这个url随便你修改
+		});
 	}
-	
-	$("#alipay-id").focus(function(){
-		if($("#alipay-id").val() == "请输入正确的交易号") {
-			$("#alipay-id").val("");
-		}
-	});
-	
-	
-	dialogCreditsBuy = $("#buy-credits-form").dialog({
-      	autoOpen: false,
-      	height: 560,
-      	width: 500,
-      	modal: true,
-      	buttons: {
-        	"立即确认": creditsWithAlipay,
-        	"取 消": function() {
-        		dialogCreditsBuy.dialog("close");
-        	}
-      	},
-      	close: function() {
-      		$("#alipay-id").removeClass("ui-state-error");
-      	}
-    });
-	$("[aria-describedby='buy-credits-form'] .ui-dialog-titlebar").css("width", "466px");
-	$("[aria-describedby='buy-credits-form'] .ui-dialog-buttonpane").css("width", "490px");
-	$($("[aria-describedby='buy-credits-form'] .ui-button")[1]).css("margin-left", "56.5px");
-	$($("[aria-describedby='buy-credits-form'] .ui-button")[2]).css("margin-left", "113px");
-	
-	dialogBuy = $("#buy-form").dialog({
-      	autoOpen: false,
-      	height: 560,
-      	width: 500,
-      	modal: true,
-      	buttons: {
-        	"立即确认": buyWithAlipay,
-        	"取 消": function() {
-        		dialogBuy.dialog("close");
-        	}
-      	},
-      	close: function() {
-      		$("#alipay-id").removeClass("ui-state-error");
-      	}
-    });
-	$("[aria-describedby='buy-form'] .ui-dialog-titlebar").css("width", "466px");
-	$("[aria-describedby='buy-form'] .ui-dialog-buttonpane").css("width", "490px");
-	$($("[aria-describedby='buy-form'] .ui-button")[1]).css("margin-left", "56.5px");
-	$($("[aria-describedby='buy-form'] .ui-button")[2]).css("margin-left", "113px");
-});
+	else {
+		FUQIANLAPC.init({
+			isCashierDesk: false,
+			appId: '97rpOtHVU1LjJEoy6Pbp0w',
+			clientIp: '127.0.0.1',
+			orderId: id, //订单号，
+			merchId: 'm1609280024',
+			channel: 'ali_direct_pay_pc',
+			amount: document.getElementById("order-price").innerText.split("¥ ")[1],
+			subject: 'NileScienceEbook',
+			notifyUrl: 'http://www.nbkyzl.com/listen.html'	//妙妙你修改这里，然后后台监听就行。这个url随便你修改
+		});
+	}
+}
