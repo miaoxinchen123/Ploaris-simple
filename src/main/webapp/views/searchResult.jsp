@@ -184,13 +184,8 @@ pageEncoding="UTF-8"%>
 </div>
 
 <div id="header">
-	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="<%=request.getContextPath()%>/images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="login" class="header-button">登录</div><div id="register" class="header-button">注册</div><div id="logout" class="header-button">注销</div>
-	<div id="user-center">个人中心</div>
-	<div id="credits"><span id="credits-amount"></span> 积分</a></div>
-	<div id="credits-topup" class="header-button">充值</div>
-	<div id="cart">购物车 <b style="color:white" id="cart-amount"></b> 件</div>
-	<div id="contact-us"><a>联系我们</a></div>
+	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
+	<div id="contact-us">联系我们</div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
@@ -204,7 +199,7 @@ pageEncoding="UTF-8"%>
 			<option value="authors">电子书作者</option>
 			<option value="isbn">ISBN 号码</option>
 		</select>
-		<input type="text" id="search-input" name="search-input" class="search-input" value="search in Nile Science"/>
+		<input type="text" id="search-input" name="search-input" class="search-input" value="search in Nile Science" style="height:35px;"/>
 		<div class="search-button" id="search-button-index">搜索</div>
 		</form>
 	</div>
@@ -218,7 +213,7 @@ pageEncoding="UTF-8"%>
 
 <c:forEach var="pojo" varStatus="s" items="${products}">
 	<div class="book-item">
-	<a  href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')"><div class="book-cover-small" style="background-image:url(<%=request.getContextPath()%>/images/cover-1.jpg);"></div></a>
+	<a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')"><div class="book-cover-small" style="background-image:url(<%=request.getContextPath()%>/images/cover-1.jpg);"></div></a>
 	<div class="book-info-simple">
 		<div class="info-simple-title"><a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')">${pojo.title}</a></div>
 		<div class="info-simple-other-div"><span class="info-simple-left">作者</span><span class="info-simple-right">${pojo.authors}</span></div>
@@ -234,11 +229,10 @@ pageEncoding="UTF-8"%>
 				<div class="lower-price-div">
 					<span class="info-simple-left" style="font-weight:700">促销价</span><span class="info-simple-right" style="font-size:20px;color:rgb(128,15,37);">¥  ${pojo.realPrice}</span> (该书可立即下载)
 				</div>
-				
 			</div>
 			<div class="price-div-right">
 				<div class="buy-now-button" onclick="buyNow('${pojo.md5}','${pojo.srcTitle}','${pojo.authors}','${pojo.realPrice}','${pojo.size}','${pojo.coverUrl}')">立即购买</div>
-				<div class="add-to-cart-button" onclick="addCart('${pojo.md5}','${pojo.srcTitle}','${pojo.authors}','${pojo.realPrice}','${pojo.size}','${pojo.coverUrl}')">加入购物车</div>
+				<div class="view-detail-button" onclick="bookDetail('${pojo.md5}')">查看详情</div>
 			</div>
 		</div>
 	</div>
@@ -288,40 +282,27 @@ pageEncoding="UTF-8"%>
 
 <div id="footer">
 	<div id="footer-wrapper">
-		<div style="width:780px; margin-left:auto; margin-right:auto;">
+		<div style="width:900px; margin-left:auto; margin-right:auto;">
 			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head"><span id="footer-user-center">个人中心</span></div>
-				<div class="footer-navigator-menu"><span id="footer-cart">购物车</span></div>
-				<div class="footer-navigator-menu"><span id="footer-order">我的订单</span></div>
-				<div class="footer-navigator-menu"><span id="footer-credits">我的积分</span></div>
-				<div class="footer-navigator-menu"><span id="footer-profile">个人资料</span></div>
-			</div>
-			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head">阅读器下载</div>
+				<div class="footer-navigator-head" id="footer-contact-us"><span>阅读器下载</span></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Adobe Reader</a></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Calibre</a></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Digital Editions</a></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">iReader</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head">帮助中心</div>
+				<div class="footer-navigator-head" id="footer-contact-us"><span>帮助中心</span></div>
 				<div class="footer-navigator-menu"><a href="./help.htm">支付问题</a></div>
 				<div class="footer-navigator-menu"><a href="./help.htm">电子书文件问题</a></div>
 				<div class="footer-navigator-menu"><a href="./help.htm">其他问题</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>检索不到我要的</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>申请重新发货</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>QQ售前客服</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>QQ售后客服</span></div>
 				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><span>意见反馈</span></div>
 			</div>
-			<div class="footer-right-wrapper">
-				<div id="footer-mobile-graph"></div>
-				<div class="footer-graph-text"><p><b>手机打开</b></p><p><b>快人一步</b></p></div>
-				<div id="footer-copyright">
-					<p><span>©2016 Nile Science</span></p>
-				</div>
-			</div>
+			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>
 	</div>
 </div>

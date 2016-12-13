@@ -193,7 +193,8 @@ a {
     	float:left
     }
     .book-item .buy-now-button,
-    .book-item .add-to-cart-button {
+    .book-item .add-to-cart-button,
+    .book-item .view-detail-button {
         width: 125px;
 	    height: 28px;
 	    float: left;
@@ -216,6 +217,9 @@ a {
 	    background-size: 12px 12px;
 	    background-repeat: no-repeat;
 	    background-color: rgb(240,240,240);
+    }
+    .book-item .view-detail-button {
+    	background-color: rgb(240,240,240);
     }
     
     #footer #footer-wrapper {

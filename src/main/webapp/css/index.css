@@ -182,7 +182,6 @@
 			height:35px;
 			line-height:35px;
 			border-radius:0px;
-			border-radiuS:0px;
 			width:100px;
 			float:left;
 			font-size:12px;
@@ -254,7 +253,7 @@
 		border-top:solid 1px rgb(190,190,190);
 	}
 	.footer-navigator-wrapper {
-		width:160px;
+		width:140px;
 	    height:140px;
 	    float:left;
 	    line-height:20px;
@@ -285,6 +284,14 @@
 		    float:left;
 		    margin-top:7px;
 		}
+	#footer-image {
+		cursor:pointer;
+		margin-top:5px;
+		width: 458px;
+	    height: 100px;
+	    float: left;
+	    background-image: url("../images/footer-image.png");
+	}
 
 .ui-dialog-titlebar {
 	width:366px;

@@ -85,7 +85,8 @@ $(function () {
 </div>
 
 <div id="header">
-	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
+	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
+	<div id="contact-us">联系我们</div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
@@ -108,40 +109,27 @@ $(function () {
 
 <div id="footer">
 	<div id="footer-wrapper">
-		<div style="width:780px; margin-left:auto; margin-right:auto;">
+		<div style="width:900px; margin-left:auto; margin-right:auto;">
 			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head"><span id="footer-user-center">个人中心</span></div>
-				<div class="footer-navigator-menu"><span id="footer-cart">购物车</span></div>
-				<div class="footer-navigator-menu"><span id="footer-order">我的订单</span></div>
-				<div class="footer-navigator-menu"><span id="footer-credits">我的积分</span></div>
-				<div class="footer-navigator-menu"><span id="footer-profile">个人资料</span></div>
-			</div>
-			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head">阅读器下载</div>
+				<div class="footer-navigator-head" id="footer-contact-us"><span>阅读器下载</span></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Adobe Reader</a></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Calibre</a></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Digital Editions</a></div>
 				<div class="footer-navigator-menu"><a href="./readerDownload.htm">iReader</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head">帮助中心</div>
+				<div class="footer-navigator-head" id="footer-contact-us"><span>帮助中心</span></div>
 				<div class="footer-navigator-menu"><a href="./help.htm">支付问题</a></div>
 				<div class="footer-navigator-menu"><a href="./help.htm">电子书文件问题</a></div>
 				<div class="footer-navigator-menu"><a href="./help.htm">其他问题</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>检索不到我要的</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>申请重新发货</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>QQ售前客服</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>QQ售后客服</span></div>
 				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><span>意见反馈</span></div>
 			</div>
-			<div class="footer-right-wrapper">
-				<div id="footer-mobile-graph"></div>
-				<div class="footer-graph-text"><p><b>手机打开</b></p><p><b>快人一步</b></p></div>
-				<div id="footer-copyright">
-					<p><span>©2016 Nile Science</span></p>
-				</div>
-			</div>
+			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>
 	</div>
 </div>

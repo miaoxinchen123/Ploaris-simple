@@ -16,12 +16,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class ESDataImport {
+	private static int cnt = 0;
+	
 	public static void main(String[] args) throws UnknownHostException {
 	        /* 
 	         * 创建客户端，所有的操作都由客户端开始，这个就好像是JDBC的Connection对象 
 	         * 用完记得要关闭 
-	         */  
-	     	File root = new File("E://ebook");
+	         */
+	     	File root = new File("C://ebook//bookInfo//bookInfo//jsonInfo");
 	       importData(root);
 	       
     }
@@ -36,6 +38,16 @@ public class ESDataImport {
         	if(file.isDirectory()){
         		importData(file);
         	}else{
+        		if(file.getAbsolutePath().contains("1991") == false) {
+        			continue;
+        		}
+        		else {
+        			cnt++;
+        			if(cnt < 200 || cnt > 400) {
+        				continue;
+        			}
+        		}
+        		
         		 //读取文件生成json数组
     	        String JsonContext = Util.ReadFile(file);
     	        System.out.println(file+":read");
