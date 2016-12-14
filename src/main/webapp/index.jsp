@@ -25,7 +25,7 @@ otherHeight = 485;
 
 $(function () {
 	$("#search-button-index").on("click", function() {
-		var searchText = $("#search-input").val();
+		var searchText = $("#searchInput").val();
 		if(searchText.length != 0 &&  searchText != "search in Nile Science") {
 			$("#f_ation").submit();
 		}
@@ -96,12 +96,12 @@ $(function () {
 <div id="page-center">
 	<div class="search-box">
 		<form id="f_ation" name="f_ation" action="indexSearch.htm" method="post">
-		<select class="search-option" id="search-option" name="search-option">
+		<select class="search-option" id="searchOption" name="searchOption">
 		    <option value="title">电子书标题</option>
 			<option value="authors">电子书作者</option>
 			<option value="isbn">ISBN 号码</option>
 		</select>
-		<input type="text" id="search-input" name="search-input" class="search-input" value="search in Nile Science"/>
+		<input type="text" id="searchInput" name="searchInput" class="search-input" value="search in Nile Science"/>
 		<div class="search-button" id="search-button-index">搜索</div>
 		</form>
 	</div>

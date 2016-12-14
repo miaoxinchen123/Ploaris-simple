@@ -47,7 +47,6 @@ public class ElasticsearchUtil {
 	 * @param pageSize
 	 * @param keyWord
 	 * @return SearchResponse
-	 * @author kangj@doone.com.cn
 	 * @date 2013-12-21 下午5:09:05
 	 */
 	public static SearchResponse searcher(String indexname, String type,
@@ -61,7 +60,7 @@ public class ElasticsearchUtil {
 			searchRequestBuilder.setTypes(type);
 			searchRequestBuilder.setFrom((nowPage-1)*pageSize);
 			// 设置查询结果集的最大条数
-			searchRequestBuilder.setSize(pageSize-1);
+			searchRequestBuilder.setSize(pageSize);
 			// 设置是否按查询匹配度排序
 			searchRequestBuilder.setExplain(true);
 			// 高亮字段

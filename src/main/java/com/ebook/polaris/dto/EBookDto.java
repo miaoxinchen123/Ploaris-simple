@@ -1,4 +1,7 @@
 package com.ebook.polaris.dto;
+
+import java.math.BigDecimal;
+
 /**
  * 
  * 电子书传输DTO 
@@ -17,17 +20,17 @@ public class EBookDto {
 	private String isbn;
 	private String timeAdded;
 	private String timeModified;
-	private double size;
+	private BigDecimal size;
 	private String extension;
-	private double price;
-	private double realPrice;
+	private BigDecimal price;
+	private BigDecimal realPrice;
 	
 	public EBookDto(){
 		
 	}
 	public EBookDto(String md5, String coverUrl, String title, String authors, String series, String publisher,
 			String year, String edition, String language, String pages, String isbn, String timeAdded,
-			String timeModified, double size, String extension) {
+			String timeModified, BigDecimal size, String extension) {
 		super();
 		this.md5 = md5;
 		this.coverUrl = coverUrl;
@@ -124,10 +127,10 @@ public class EBookDto {
 	public void setTimeModified(String timeModified) {
 		this.timeModified = timeModified;
 	}
-	public double getSize() {
+	public BigDecimal getSize() {
 		return size;
 	}
-	public void setSize(double size) {
+	public void setSize(BigDecimal size) {
 		this.size = size;
 	}
 	public String getExtension() {
@@ -136,17 +139,17 @@ public class EBookDto {
 	public void setExtension(String extension) {
 		this.extension = extension;
 	}
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setPrice(BigDecimal price1) {
+		this.price = price1;
 	}
-	public double getRealPrice() {
+	public BigDecimal getRealPrice() {
 		return realPrice;
 	}
-	public void setRealPrice(double realPrice) {
-		this.realPrice = realPrice;
+	public void setRealPrice(BigDecimal price1) {
+		this.realPrice = price1;
 	}
 
 }

@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -31,7 +32,7 @@ import javassist.expr.NewArray;
 
 @Controller  
 public class SearchController {
-	public	static final int PAGE_SIZE = 5;
+	public	static final int PAGE_SIZE = 20;
 	public	static final String INDEX_NAME = "polaris";
 	public	static final String  TYPE_NAME = "ebook";
 	/** 总记录数 使用静态变量的方式缓存 **/
@@ -39,7 +40,7 @@ public class SearchController {
 	/** 搜索条件**/
 	public	String searchOption;
 	/** 搜索字段**/
-	public	String searchinput;
+	public	String searchInput;
 	public	Page page;
 	/** 查询结果集对象 **/
 	public	List<Map<String, Object>> pageList;
@@ -50,8 +51,8 @@ public class SearchController {
 
 	@RequestMapping(value="/indexSearch", method = {RequestMethod.POST })
 	public String search(HttpServletRequest request, Model model) {  
-        searchOption = request.getParameter("search-option");  
-        searchinput = request.getParameter("search-input");  
+        searchOption = request.getParameter("searchOption");  
+        searchInput = request.getParameter("searchInput");  
         String pageNow = request.getParameter("pageNow");
         int pageNowInt;
         if("".equals(pageNow)|| pageNow ==null){
@@ -61,12 +62,13 @@ public class SearchController {
         }
         
 		response = ElasticsearchUtil.searcher(INDEX_NAME, TYPE_NAME,
-				pageNowInt, PAGE_SIZE, searchOption,searchinput,searchOption);
+				pageNowInt, PAGE_SIZE, searchOption,searchInput,searchOption);
 		/** 总记录数 **/
 		total = response.getHits().totalHits();
 		SearchHits searchHits = response.getHits();
 		SearchHit[] hits = searchHits.getHits();
 	    pageList = new ArrayList<Map<String, Object>>();
+	   
 		for (int i = 0; i < hits.length; i++) {
 			Map<String, Object>  map = new HashMap<String, Object>();
 			SearchHit hit = hits[i];
@@ -84,34 +86,41 @@ public class SearchController {
 				map.put("authors", hit.getSource().get("authors"));
 			}
 			map.put("year", hit.getSource().get("year"));
-			double price1 = 0;
+			BigDecimal price1 = new BigDecimal(0);
 			if(hit.getSource().get("pages")!=null && hit.getSource().get("pages")!=""){
 				double price = k * (25 + 0.02 * (min(800, Integer.parseInt(hit.getSource().get("pages").toString())) - 300) + 0.0000003 * (min(60000000,  Integer.parseInt(hit.getSource().get("size").toString())) - 10000000));
 				BigDecimal b = new BigDecimal(price);  
-			    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();  
+			    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 			}else{
 				double price = k * (25  + 0.0000003 * (min(60000000,  Integer.parseInt(hit.getSource().get("size").toString())) - 10000000));
 				BigDecimal b = new BigDecimal(price);  
-			    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();  
+			    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 			}
 			
-			map.put("price", price1*1.3);
-			map.put("realPrice", price1);
+			map.put("price", price1.multiply(new BigDecimal(1.3)).setScale(2,BigDecimal.ROUND_HALF_UP));
+			map.put("realPrice", 0.01);
 			map.put("coverUrl", hit.getSource().get("coverUrl"));
 			map.put("size", hit.getSource().get("size"));
 			pageList.add(map);
 		}
+		if(total.intValue()>100){
+			if (pageNow != null && !pageNow.equals("")) {
+	    		page = new Page(100, Integer.parseInt(pageNow));
+	    	} else {
+	    		page = new Page(100, 1);
+	    	}
+		}else{
+			if (pageNow != null && !pageNow.equals("")) {
+	    		page = new Page(total.intValue(), Integer.parseInt(pageNow));
+	    	} else {
+	    		page = new Page(total.intValue(), 1);
+	    	}
+		}
 		
-		if (pageNow != null && !pageNow.equals("")) {
-    		page = new Page(total.intValue(), Integer.parseInt(pageNow));
-    	} else {
-    		page = new Page(total.intValue(), 1);
-    	}
-
 		model.addAttribute("products", pageList);
     	model.addAttribute("page", page);
     	model.addAttribute("searchOption", searchOption);
-    	model.addAttribute("searchinput", searchinput);
+    	model.addAttribute("searchInput", searchInput);
 		return "/views/searchResult";  
 	}
 	
@@ -120,25 +129,73 @@ public class SearchController {
 		Map<String,Object> bookDetail =ElasticsearchUtil.get(INDEX_NAME, TYPE_NAME, request.getParameter("MD5"));
 		EBookDto ebookDto = new EBookDto();
 		ebookDto.setAuthors(bookDetail.get("authors").toString());
+		
 		ebookDto.setCoverUrl(bookDetail.get("coverUrl").toString());
-		ebookDto.setEdition(bookDetail.get("edition").toString());
-		ebookDto.setExtension(bookDetail.get("extension").toString());
-		ebookDto.setIsbn(bookDetail.get("isbn").toString());
-		ebookDto.setLanguage(bookDetail.get("language").toString());
+		
+		if(null!=bookDetail.get("edition")){
+			ebookDto.setEdition(bookDetail.get("edition").toString());
+		}else{
+			ebookDto.setEdition("edition");
+		}
+		
+		if(null!=bookDetail.get("extension")){
+			ebookDto.setExtension(bookDetail.get("extension").toString());
+		}else{
+			ebookDto.setExtension("unKnown");
+		}
+		
+		if(null!=bookDetail.get("isbn")){
+			ebookDto.setIsbn(bookDetail.get("isbn").toString());
+		}else{
+			ebookDto.setIsbn("unKnown");
+		}
+		
+		if(null!=bookDetail.get("language")){
+			ebookDto.setLanguage(bookDetail.get("language").toString());
+		}else{
+			ebookDto.setLanguage("unKnown");
+		}
 		ebookDto.setMd5(bookDetail.get("md5").toString());
-		ebookDto.setPages(bookDetail.get("pages").toString());
-		ebookDto.setPublisher(bookDetail.get("publisher").toString());
-		ebookDto.setSeries(bookDetail.get("series").toString());
+		if(null!=bookDetail.get("pages")){
+			ebookDto.setPages(bookDetail.get("pages").toString());
+		}else{
+			ebookDto.setPages("unKnown");
+		}
+		if(null!=bookDetail.get("publisher")){
+			ebookDto.setPublisher(bookDetail.get("publisher").toString());
+		}else{
+			ebookDto.setPublisher("unKnown");
+		}
+		if(null!=bookDetail.get("series")){
+			ebookDto.setSeries(bookDetail.get("series").toString());
+		}else{
+			ebookDto.setSeries("unKnown");
+		}
 		ebookDto.setTitle(bookDetail.get("title").toString());
-		ebookDto.setYear(bookDetail.get("year").toString());
+		if(null!=bookDetail.get("year")){
+			ebookDto.setYear(bookDetail.get("year").toString());
+		}else{
+			ebookDto.setYear("unKnown");
+		}
 		ebookDto.setAuthors(bookDetail.get("authors").toString());
 		
-		double size = Double.parseDouble(bookDetail.get("size").toString());
-		ebookDto.setSize(size/1024);
-		double price = k * (25 + 0.02 * (min(800, Integer.parseInt(ebookDto.getPages()) - 300) + 0.0000003 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString()) - 10000000))));
-		BigDecimal b = new BigDecimal(price);  
-		double price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();  
-		ebookDto.setPrice(price1);
+		BigDecimal size = new BigDecimal(bookDetail.get("size").toString());
+		ebookDto.setSize(size.divide(new BigDecimal(1024*1024)).setScale(2,BigDecimal.ROUND_HALF_UP));
+		
+		
+		BigDecimal price1 = new BigDecimal(0);
+		if(bookDetail.get("pages")!=null && bookDetail.get("pages")!=""){
+			double price = k * (25 + 0.02 * (min(800, Integer.parseInt(bookDetail.get("pages").toString())) - 300) + 0.0000003 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString())) - 10000000));
+			BigDecimal b = new BigDecimal(price);  
+		    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
+		}else{
+			double price = k * (25  + 0.0000003 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString())) - 10000000));
+			BigDecimal b = new BigDecimal(price);  
+		    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
+		}
+		
+		
+		ebookDto.setPrice(price1.multiply(new BigDecimal(1.3)).setScale(2,BigDecimal.ROUND_HALF_UP));
 		ebookDto.setRealPrice(price1);
 		model.addAttribute("book", ebookDto);
 		return "/views/detail";  

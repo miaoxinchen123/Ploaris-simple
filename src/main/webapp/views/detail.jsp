@@ -77,11 +77,6 @@ pageEncoding="UTF-8"%>
 
 <div id="header">
 	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="login" class="header-button">登录</div><div id="register" class="header-button">注册</div><div id="logout" class="header-button">注销</div>
-	<div id="user-center">个人中心</div>
-	<div id="credits"><span id="credits-amount"></span> 积分</div>
-	<div id="credits-topup" class="header-button">充值</div>
-	<div id="cart">购物车 <b style="color:white" id="cart-amount"></b> 件</div>
 	<div id="contact-us">联系我们</div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
@@ -89,7 +84,7 @@ pageEncoding="UTF-8"%>
 
 <div class="book-item-detail">
 	<div class="book-file-detail">
-		<div class="book-cover" style="background-image:url(./images/cover-1.jpg);"></div>
+		<div class="book-cover" style="background-image:url(${book.coverUrl});"></div>
 		
 		<div class="info-detail-other-div">
 			<span class="info-detail-left">电子书格式</span>
@@ -109,7 +104,6 @@ pageEncoding="UTF-8"%>
 		<div class="info-detail-other-div"><span class="info-detail-left">页数</span><span class="info-detail-right">${book.pages}页</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">系列</span><span class="info-detail-right">${book.series}</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">周期</span><span class="info-detail-right">${book.publisher}</span></div>
-		<div class="info-detail-other-div"><span class="info-detail-left">城市</span><span class="info-detail-right"></span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">版次</span><span class="info-detail-right">第 ${book.edition}版</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">ISBN</span><span class="info-detail-right">${book.isbn}</span></div>
 		

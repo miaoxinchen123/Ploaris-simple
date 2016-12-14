@@ -21,9 +21,17 @@ pageEncoding="UTF-8"%>
 <script src="<%=request.getContextPath()%>/js/pcjssdk.3.0.js"></script>
 
 <script>
+	$(document).ready(function(){
+		for(var i=0;i<document.getElementById('searchOption').options.length;i++){ 
+			if(document.getElementById('searchOption').options[i].value==='${searchOption}'){ 
+				document.getElementById('searchOption').options[i].selected=true; 
+			} 
+		} 
+	});
+
 	$(function () {
-		$("#search-button-index").on("click", function() {
-			var searchText = $("#search-input").val();
+			$("#search-button-index").on("click", function() {
+			var searchText = $("#searchInput").val();
 			if(searchText.length != 0 &&  searchText != "search in Nile Science") {
 				$("#f_ation").submit();
 			}
@@ -42,7 +50,7 @@ pageEncoding="UTF-8"%>
 	 */
 	function pageQuery(pageSize){
 		$("#pageNow").val(pageSize);
-		$("#f_ation").submit();
+		$("#f_page").submit();
 	}
 	
 	 /*
@@ -126,12 +134,12 @@ pageEncoding="UTF-8"%>
 	<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="search-header-logo" src="<%=request.getContextPath()%>/images/logo-small-on-list-page.png" alt="Nile Science"></img></a>
 	<div class="search-box">
 		<form id="f_ation" name="f_ation" action="indexSearch.htm" method="post">
-		<select class="search-option" id="search-option" name="search-option">
+		<select class="search-option" id="searchOption" name="searchOption">
 		    <option value="title">电子书标题</option>
 			<option value="authors">电子书作者</option>
 			<option value="isbn">ISBN 号码</option>
 		</select>
-		<input type="text" id="search-input" name="search-input" class="search-input" value="search in Nile Science" style="height:35px;"/>
+		<input type="text" id="searchInput" name="searchInput" class="search-input" value="${searchInput}" style="height:35px;"/>
 		<div class="search-button" id="search-button-index">搜索</div>
 		</form>
 	</div>
@@ -139,13 +147,14 @@ pageEncoding="UTF-8"%>
 
 <div id="result-overview">
 	<div id="fh" class="n_l">
-		<span style="padding-left:152px;">以下呈现的是“${searchinput}”的精选结果</span>
+		<span style="padding-left:152px;">以下呈现的是“${searchInput}”的精选结果</span>
 	</div>
 </div>
-
-<c:forEach var="pojo" varStatus="s" items="${products}">
+<c:choose>  
+   <c:when test="${page.totalCount > 0}">  
+    <c:forEach var="pojo" varStatus="s" items="${products}">
 	<div class="book-item">
-	<a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')"><div class="book-cover-small" style="background-image:url(<%=request.getContextPath()%>/images/cover-1.jpg);"></div></a>
+	<a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')"><div class="book-cover-small" style="background-image:url(${pojo.coverUrl};"></div></a>
 	<div class="book-info-simple">
 		<div class="info-simple-title"><a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')">${pojo.title}</a></div>
 		<div class="info-simple-other-div"><span class="info-simple-left">作者</span><span class="info-simple-right">${pojo.authors}</span></div>
@@ -169,49 +178,53 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 	</div>
-</c:forEach>
-
-
-<div id="result-overview" style="margin-top:20px">
-	<!-- 分页功能 start -->
-	<div align="center">
-	<form id="f_ation" name="f_ation" action="indexSearch.htm" method="post">
-		<input type="hidden" name="search-option" id="search-option"   value="${searchOption}"/>
-		<input type="hidden" name="search-input"  id="search-input"  value="${searchinput}"/>
-		<input type="hidden" name="pageNow" id="pageNow"/>
-		<font size="2">共 ${page.totalPageCount} 页</font> <font size="2">第
-			${page.pageNow} 页</font> <a href="javascript:void(0)" onclick="pageQuery(1)">首页</a>
-		<c:choose>
-			<c:when test="${page.pageNow - 1 > 0}">
-				<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow - 1})">上一页</a>
-			</c:when>
-			<c:when test="${page.pageNow - 1 <= 0}">
-				<a href="javascript:void(0)" onclick="pageQuery(1)">上一页</a>
-			</c:when>
-		</c:choose>
-		<c:choose>
-			<c:when test="${page.totalPageCount==0}">
-				<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow})">下一页</a>
-			</c:when>
-			<c:when test="${page.pageNow + 1 < page.totalPageCount}">
-				<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow + 1})">下一页</a>
-			</c:when>
-			<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
-				<a href="javascript:void(0)" onclick="pageQuery(${page.totalPageCount})">下一页</a>
-			</c:when>
-		</c:choose>
-		<c:choose>
-			<c:when test="${page.totalPageCount==0}">
-				<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow})">尾页</a>
-			</c:when>
-			<c:otherwise>
-				<a href="javascript:void(0)" onclick="pageQuery(${page.totalPageCount})">尾页</a>
-			</c:otherwise>
-		</c:choose>
-	</form>
-	</div>		
-</div>
-
+	</c:forEach>
+	<div id="result-overview" style="margin-top:20px">
+		<!-- 分页功能 start -->
+		<div align="center">
+		<form id="f_page" name="f_page" action="indexSearch.htm" method="post">
+			<input type="hidden" name="searchOption"   value="${searchOption}"/>
+			<input type="hidden" name=searchInput   value="${searchInput}"/>
+			<input type="hidden" name="pageNow" id="pageNow"/>
+			<font size="2">共 ${page.totalPageCount} 页</font> <font size="2">第
+				${page.pageNow} 页</font> <a href="javascript:void(0)" onclick="pageQuery(1)">首页</a>
+			<c:choose>
+				<c:when test="${page.pageNow - 1 > 0}">
+					<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow - 1})">上一页</a>
+				</c:when>
+				<c:when test="${page.pageNow - 1 <= 0}">
+					<a href="javascript:void(0)" onclick="pageQuery(1)">上一页</a>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${page.totalPageCount==0}">
+					<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow})">下一页</a>
+				</c:when>
+				<c:when test="${page.pageNow + 1 < page.totalPageCount}">
+					<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow + 1})">下一页</a>
+				</c:when>
+				<c:when test="${page.pageNow + 1 >= page.totalPageCount}">
+					<a href="javascript:void(0)" onclick="pageQuery(${page.totalPageCount})">下一页</a>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${page.totalPageCount==0}">
+					<a href="javascript:void(0)" onclick="pageQuery(${page.pageNow})">尾页</a>
+				</c:when>
+				<c:otherwise>
+					<a href="javascript:void(0)" onclick="pageQuery(${page.totalPageCount})">尾页</a>
+				</c:otherwise>
+			</c:choose>
+		</form>
+		</div>		
+	</div>
+</c:when>  
+<c:otherwise>
+	<div class="book-item">
+		对不起，没有找到任何电子书
+	</div>
+</c:otherwise>  
+</c:choose>  
 <div id="footer">
 	<div id="footer-wrapper">
 		<div style="width:900px; margin-left:auto; margin-right:auto;">
