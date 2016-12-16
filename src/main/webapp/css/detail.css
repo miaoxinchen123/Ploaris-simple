@@ -1,20 +1,6 @@
 #search-header {
     border-bottom: solid 1px rgb(220,220,220);
 }
-	#search-header #search-header-logo {
-	    float:left;
-		width: 150px;
-	    height: 35px;
-	    background-image:url("../images/logo.png");
-	    background-size: 120px;
-	    background-repeat: no-repeat;
-	    background-position-x: center;
-	    background-position-y: center;
-	    cursor:pointer;
-	}
-	#search-header .search-box {
-		float:left;
-	}
 	
 .book-item-detail {
 	height:440px;
@@ -82,6 +68,7 @@
     .book-item-detail .info-detail-left {
     	width: 80px;
     	display: inline-block;
+    	float: left;
     }
     .book-item-detail .info-detail-right {
     	
@@ -150,10 +137,10 @@
     .book-item-detail #pay-problem {
    	    height: 35px;
 		line-height: 35px;
-	   	width: 100px;
+	   	width: 300px;
 	   	float: left;
 	   	margin: 20px 6px 0px 15px;
-	   	font-size: 10px;
+	   	font-size: 12px;
 	   	text-decoration: underline;
 	   	cursor: pointer;
 	   	text-align: right;

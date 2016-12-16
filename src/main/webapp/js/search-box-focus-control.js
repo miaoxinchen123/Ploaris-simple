@@ -1,17 +1,15 @@
 $(function() {
-	$("#search-input").focus(function(){
-		if($("#search-input").val() == "search in Nile Science") {
-			$("#search-input").val("");
+	$("#searchInput").focus(function(){
+		if($("#searchInput").val() == "More than 3 million books are available") {
+			$("#searchInput").val("");
 		}
-		$("#search-input").css("color", "black");	
+		$("#searchInput").css("color", "black");	
 	});
-});
-
-$(function() {
-	$("#search-input").blur(function(){
-		if($("#search-input").val() == "") {
-			$("#search-input").val("search in Nile Science");
-			$("#search-input").css("color", "rgb(180,180,180)");
+	
+	$("#searchInput").blur(function(){
+		if($("#searchInput").val() == "") {
+			$("#searchInput").val("More than 3 million books are available");
+			$("#searchInput").css("color", "rgb(180,180,180)");
 		}
 	});
 });

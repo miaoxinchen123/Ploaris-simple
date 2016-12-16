@@ -88,17 +88,17 @@ public class SearchController {
 			map.put("year", hit.getSource().get("year"));
 			BigDecimal price1 = new BigDecimal(0);
 			if(hit.getSource().get("pages")!=null && hit.getSource().get("pages")!=""){
-				double price = k * (25 + 0.02 * (min(800, Integer.parseInt(hit.getSource().get("pages").toString())) - 300) + 0.0000003 * (min(60000000,  Integer.parseInt(hit.getSource().get("size").toString())) - 10000000));
+				double price = k * (50 + 0.05 * (min(800, Integer.parseInt(hit.getSource().get("pages").toString())) - 300) + 0.0000006 * (min(60000000,  Integer.parseInt(hit.getSource().get("size").toString())) - 10000000));
 				BigDecimal b = new BigDecimal(price);  
 			    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 			}else{
-				double price = k * (25  + 0.0000003 * (min(60000000,  Integer.parseInt(hit.getSource().get("size").toString())) - 10000000));
+				double price = k * (50  + 0.0000006 * (min(60000000,  Integer.parseInt(hit.getSource().get("size").toString())) - 10000000));
 				BigDecimal b = new BigDecimal(price);  
 			    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 			}
 			
-			map.put("price", price1.multiply(new BigDecimal(1.3)).setScale(2,BigDecimal.ROUND_HALF_UP));
-			map.put("realPrice", 0.01);
+			map.put("price", price1.multiply(new BigDecimal(1.8)).setScale(2,BigDecimal.ROUND_HALF_UP));
+			map.put("realPrice", price1);
 			map.put("coverUrl", hit.getSource().get("coverUrl"));
 			map.put("size", hit.getSource().get("size"));
 			pageList.add(map);
@@ -156,8 +156,8 @@ public class SearchController {
 			ebookDto.setLanguage("unKnown");
 		}
 		ebookDto.setMd5(bookDetail.get("md5").toString());
-		if(null!=bookDetail.get("pages")){
-			ebookDto.setPages(bookDetail.get("pages").toString());
+		if(null!=bookDetail.get("page") && false==bookDetail.get("page").toString().equals("-1")){
+			ebookDto.setPages(bookDetail.get("page").toString());
 		}else{
 			ebookDto.setPages("unKnown");
 		}
@@ -185,17 +185,17 @@ public class SearchController {
 		
 		BigDecimal price1 = new BigDecimal(0);
 		if(bookDetail.get("pages")!=null && bookDetail.get("pages")!=""){
-			double price = k * (25 + 0.02 * (min(800, Integer.parseInt(bookDetail.get("pages").toString())) - 300) + 0.0000003 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString())) - 10000000));
+			double price = k * (50 + 0.05 * (min(800, Integer.parseInt(bookDetail.get("pages").toString())) - 300) + 0.0000006 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString())) - 10000000));
 			BigDecimal b = new BigDecimal(price);  
 		    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 		}else{
-			double price = k * (25  + 0.0000003 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString())) - 10000000));
+			double price = k * (50 + 0.0000006 * (min(60000000,  Integer.parseInt(bookDetail.get("size").toString())) - 10000000));
 			BigDecimal b = new BigDecimal(price);  
 		    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 		}
 		
 		
-		ebookDto.setPrice(price1.multiply(new BigDecimal(1.3)).setScale(2,BigDecimal.ROUND_HALF_UP));
+		ebookDto.setPrice(price1.multiply(new BigDecimal(1.8)).setScale(2,BigDecimal.ROUND_HALF_UP));
 		ebookDto.setRealPrice(price1);
 		model.addAttribute("book", ebookDto);
 		return "/views/detail";  

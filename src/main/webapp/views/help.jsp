@@ -29,13 +29,13 @@ pageEncoding="UTF-8"%>
 
 <body>
 <div id="header">
-	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="<%=request.getContextPath()%>/images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="contact-us"><a>联系我们</a></div>
+	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
+	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
 
-<div id="reader-download-title">常见问题列表</div>
+<div id="reader-download-title" style="font-size:300;">常见问题列表</div>
 	
 <div id="page-center">
 	<h2>Nile Science 提供什么服务？</h2>

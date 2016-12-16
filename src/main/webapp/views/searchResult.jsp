@@ -16,9 +16,9 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buy-form.css" />
 
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
-<script src="<%=request.getContextPath()%>/js/list.js"></script>
 <script src="<%=request.getContextPath()%>/js/buy-dialog.js"></script>
 <script src="<%=request.getContextPath()%>/js/pcjssdk.3.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/search-box-focus-control.js"></script>
 
 <script>
 	$(document).ready(function(){
@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
 	$(function () {
 			$("#search-button-index").on("click", function() {
 			var searchText = $("#searchInput").val();
-			if(searchText.length != 0 &&  searchText != "search in Nile Science") {
+			if(searchText.length != 0 &&  searchText != "More than 3 million books are available") {
 				$("#f_ation").submit();
 			}
 		});
@@ -168,7 +168,7 @@ pageEncoding="UTF-8"%>
 			<div class="price-div-left">
 				<div class="origin-price-div"><span class="info-simple-left">价格</span><span class="info-simple-right" style="text-decoration:line-through">¥ ${pojo.price}</span></div>
 				<div class="lower-price-div">
-					<span class="info-simple-left" style="font-weight:700">促销价</span><span class="info-simple-right" style="font-size:20px;color:rgb(128,15,37);">¥  ${pojo.realPrice}</span> (该书可立即下载)
+					<span class="info-simple-left" style="font-weight:700">促销价</span><span class="info-simple-right" style="font-size:20px;color:rgb(128,15,37);">¥ ${pojo.realPrice}</span> (该书可立即下载)
 				</div>
 			</div>
 			<div class="price-div-right">
@@ -183,8 +183,8 @@ pageEncoding="UTF-8"%>
 		<!-- 分页功能 start -->
 		<div align="center">
 		<form id="f_page" name="f_page" action="indexSearch.htm" method="post">
-			<input type="hidden" name="searchOption"   value="${searchOption}"/>
-			<input type="hidden" name=searchInput   value="${searchInput}"/>
+			<input type="hidden" name="searchOption" value="${searchOption}"/>
+			<input type="hidden" name=searchInput value="${searchInput}"/>
 			<input type="hidden" name="pageNow" id="pageNow"/>
 			<font size="2">共 ${page.totalPageCount} 页</font> <font size="2">第
 				${page.pageNow} 页</font> <a href="javascript:void(0)" onclick="pageQuery(1)">首页</a>
@@ -221,7 +221,8 @@ pageEncoding="UTF-8"%>
 </c:when>  
 <c:otherwise>
 	<div class="book-item">
-		对不起，没有找到任何电子书
+		对不起，没有找到任何电子书。<br/><br/>
+		小技巧：（1）减少搜索的词；（2）去掉逗号、冒号等特殊字符；（3）<a style="color:#C40000; text-decoration:underline;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">骚扰QQ客服</a>帮您搜索。
 	</div>
 </c:otherwise>  
 </c:choose>  

@@ -24,13 +24,13 @@ pageEncoding="UTF-8"%>
 
 <body>
 <div id="header">
-	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="contact-us">联系我们</div>
+	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
+	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
 
-<div id="reader-download-title">请选择适合您的阅读器<span>我该如何选择 ?</span></div>
+<div id="reader-download-title" style="font-size:300;">请选择适合您的阅读器<span>我该如何选择 ?</span></div>
 
 <div class="reader-item-wrapper">
 	<div class="reader-item">

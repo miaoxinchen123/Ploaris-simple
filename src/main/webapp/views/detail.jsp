@@ -16,15 +16,27 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="./css/ui/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="./css/global.css" />
 <link rel="stylesheet" type="text/css" href="./css/index.css" />
+<link rel="stylesheet" type="text/css" href="./css/list.css" />
 <link rel="stylesheet" type="text/css" href="./css/detail.css" />
+
 
 <script src="./js/jquery-1.12.4.js"></script>
 <script src="./js/jquery-ui.js"></script>
 <script src="./js/footer-margin-control.js"></script>
 <script src="./js/account-dialog-control.js"></script>
+<script src="./js/search-box-focus-control.js"></script>
 
 <script>
-	otherHeight = 695;
+	otherHeight = 745;
+	
+	$(function () {
+		$("#search-button-index").on("click", function() {
+			var searchText = $("#searchInput").val();
+			if(searchText.length != 0 &&  searchText != "More than 3 million books are available") {
+				$("#f_ation").submit();
+			}
+		});
+	});
 </script>
 
 </head>
@@ -76,10 +88,25 @@ pageEncoding="UTF-8"%>
 </div>
 
 <div id="header">
-	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="contact-us">联系我们</div>
+	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
+	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
+</div>
+
+<div id="search-header">
+	<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="search-header-logo" src="<%=request.getContextPath()%>/images/logo-small-on-list-page.png" alt="Nile Science"></img></a>
+	<div class="search-box">
+		<form id="f_ation" name="f_ation" action="indexSearch.htm" method="post">
+		<select class="search-option" id="searchOption" name="searchOption">
+		    <option value="title">电子书标题</option>
+			<option value="authors">电子书作者</option>
+			<option value="isbn">ISBN 号码</option>
+		</select>
+		<input type="text" id="searchInput" name="searchInput" class="search-input" value="More than 3 million books are available" style="height:33px;"/>
+		<div class="search-button" id="search-button-index">搜索</div>
+		</form>
+	</div>
 </div>
 
 <div class="book-item-detail">
@@ -101,11 +128,11 @@ pageEncoding="UTF-8"%>
 		<div class="info-detail-other-div"><span class="info-detail-left">出版时间</span><span class="info-detail-right">${book.year}年</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">出版社</span><span class="info-detail-right">${book.publisher}</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">语言</span><span class="info-detail-right">${book.language}</span></div>
-		<div class="info-detail-other-div"><span class="info-detail-left">页数</span><span class="info-detail-right">${book.pages}页</span></div>
+		<div class="info-detail-other-div"><span class="info-detail-left">页数</span><span class="info-detail-right">${book.pages}</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">系列</span><span class="info-detail-right">${book.series}</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">周期</span><span class="info-detail-right">${book.publisher}</span></div>
-		<div class="info-detail-other-div"><span class="info-detail-left">版次</span><span class="info-detail-right">第 ${book.edition}版</span></div>
-		<div class="info-detail-other-div"><span class="info-detail-left">ISBN</span><span class="info-detail-right">${book.isbn}</span></div>
+		<div class="info-detail-other-div"><span class="info-detail-left">版次</span><span class="info-detail-right">${book.edition}</span></div>
+		<div class="info-detail-other-div"><span class="info-detail-left">ISBN</span><div class="info-detail-right" style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap;width:600px;">${book.isbn}</div></div>
 		
 		<div class="price-div">
 			<div class="price-div-left">
@@ -117,48 +144,34 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="buy-div">
 			<div class="buy-now-button">立即购买</div>
-			<div class="add-to-cart-button">加入购物车</div>
-			<div id="pay-problem">支付遇到问题 ?</div>
+			<div id="pay-problem" onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes')">支付遇到问题 联系QQ客服?</div>
 		</div>
 	</div>
 </div>
 
 <div id="footer">
 	<div id="footer-wrapper">
-		<div style="width:780px; margin-left:auto; margin-right:auto;">
+		<div style="width:900px; margin-left:auto; margin-right:auto;">
 			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head"><span id="footer-user-center">个人中心</span></div>
-				<div class="footer-navigator-menu"><span id="footer-cart">购物车</span></div>
-				<div class="footer-navigator-menu"><span id="footer-order">我的订单</span></div>
-				<div class="footer-navigator-menu"><span id="footer-credits">我的积分</span></div>
-				<div class="footer-navigator-menu"><span id="footer-profile">个人资料</span></div>
+				<div class="footer-navigator-head" id="footer-contact-us"><span>阅读器下载</span></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Adobe Reader</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Calibre</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">Digital Editions</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./readerDownload.htm">iReader</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head">阅读器下载</div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Adobe Reader</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Calibre</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">Digital Editions</a></div>
-				<div class="footer-navigator-menu"><a href="./readerDownload.htm">iReader</a></div>
-			</div>
-			<div class="footer-navigator-wrapper">
-				<div class="footer-navigator-head">帮助中心</div>
-				<div class="footer-navigator-menu"><a href="./help.htm">支付问题</a></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">电子书文件问题</a></div>
-				<div class="footer-navigator-menu"><a href="./help.htm">其他问题</a></div>
+				<div class="footer-navigator-head" id="footer-contact-us"><span>帮助中心</span></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">支付问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">电子书文件问题</a></div>
+				<div class="footer-navigator-menu"><a target="_blank" href="./help.htm">其他问题</a></div>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><span>检索不到我要的</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><span>申请重新发货</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><span>意见反馈</span></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售前客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售后客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">意见反馈</a></div>
 			</div>
-			<div class="footer-right-wrapper">
-				<div id="footer-mobile-graph"></div>
-				<div class="footer-graph-text"><p><b>手机打开</b></p><p><b>快人一步</b></p></div>
-				<div id="footer-copyright">
-					<p><span>©2016 Nile Science</span></p>
-				</div>
-			</div>
+			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>
 	</div>
 </div>
