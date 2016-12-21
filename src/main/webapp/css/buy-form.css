@@ -55,6 +55,7 @@
 #buy-form #send-time {
 	width:300px;
 	line-height:45px;
+	font-size:14px;
 }
 #buy-form #order-price {
 	line-height:40px;

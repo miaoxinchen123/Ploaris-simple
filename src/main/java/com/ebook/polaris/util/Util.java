@@ -16,10 +16,11 @@ public class Util {
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 			reader = new BufferedReader(inputStreamReader);
 			String tempString = null;
-		while((tempString = reader.readLine()) != null){
-			laststr += tempString;
-		}
+			while((tempString = reader.readLine()) != null){
+				laststr += tempString;
+			}
 			reader.close();
+			fileInputStream.close();
 		}catch(IOException e){
 			e.printStackTrace();
 		}finally{

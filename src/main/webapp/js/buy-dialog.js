@@ -1,7 +1,7 @@
 /*
  * 立即购买
  */
- function buyNow(md5,title,authors,price,size,covelUrl){
+ function buyNow(title, price){
 		var currentTime = new Date();
 		var year = (new Date(currentTime.valueOf() + 1000 * 1800)).getYear() + 1900;
 		var month = (new Date(currentTime.valueOf() + 1000 * 1800)).getMonth() + 1;

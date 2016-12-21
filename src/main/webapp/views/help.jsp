@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
 
-<div id="reader-download-title" style="font-size:300;">常见问题列表</div>
+<div id="reader-download-title">常见问题列表</div>
 	
 <div id="page-center">
 	<h2>Nile Science 提供什么服务？</h2>

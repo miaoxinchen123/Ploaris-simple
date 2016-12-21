@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
 
-<div id="reader-download-title" style="font-size:300;">请选择适合您的阅读器<span>我该如何选择 ?</span></div>
+<div id="reader-download-title">请选择适合您的阅读器<span onclick="window.open('./help.htm')">我该如何选择 ?</span></div>
 
 <div class="reader-item-wrapper">
 	<div class="reader-item">

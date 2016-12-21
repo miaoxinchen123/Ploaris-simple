@@ -52,6 +52,9 @@
 		height:25px;
 		line-height:25px;
 		font-size:12px;
+		text-overflow: ellipsis;
+    	white-space: nowrap;
+    	overflow: hidden;
 	}
 	.book-file-detail .info-detail-other-div {
 		margin-left:0px;

@@ -18,12 +18,12 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="./css/index.css" />
 <link rel="stylesheet" type="text/css" href="./css/list.css" />
 <link rel="stylesheet" type="text/css" href="./css/detail.css" />
-
+<link rel="stylesheet" type="text/css" href="./css/buy-form.css" />
 
 <script src="./js/jquery-1.12.4.js"></script>
-<script src="./js/jquery-ui.js"></script>
 <script src="./js/footer-margin-control.js"></script>
-<script src="./js/account-dialog-control.js"></script>
+<script src="./js/buy-dialog.js"></script>
+<script src="./js/pcjssdk.3.0.js"></script>
 <script src="./js/search-box-focus-control.js"></script>
 
 <script>
@@ -42,49 +42,33 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<div id="dialog-register-form" title="注册成为新用户">
-  <p class="validate-tips-register">请填写以下信息</p>
-  <form>
-    <fieldset>
-      <label for="email-register">邮箱</label>
-      <input type="text" name="email-register" id="email-register" value="用于发货, 请您仔细填写" class="text ui-widget-content ui-corner-all" onfocus="focusEmailLoginInput()" onblur="blurEmailLoginInput()">
-      <label for="password-register">密码</label>
-      <input type="password" name="password-register" id="password-register" value="" class="text ui-widget-content ui-corner-all">
-      <label for="password-register-2">确认密码</label>
-      <input type="password" name="password-register-2" id="password-register-2" value="" class="text ui-widget-content ui-corner-all">
-     </fieldset>
-  </form>
-</div>
-
-<div id="dialog-login-form" title="登录 Nile Science">
-  <p class="validate-tips-login">请填写以下信息</p>
-  <form>
-    <fieldset>
-      <label for="email-login">邮箱</label>
-      <input type="text" name="email-login" id="email-login" value="" class="text ui-widget-content ui-corner-all">
-      <label for="password-login">密码</label>
-      <input type="password" name="password-login" id="password-login" value="" class="text ui-widget-content ui-corner-all">
-      <div class="register-small-button" id="forget-password">忘记密码</div>
-	  <div class="register-small-button" id="register-now">立即注册</div>
-     </fieldset>
-  </form>
-</div>
-
-<div id="dialog-contact-us-form" title="联系我们">
-  	<form>
-    	<fieldset>
-      		<label for="contact-type">联系内容</label>
-      		<select id="contact-type-option">
-   				<option value="search">检索不到我要的</option>
-				<option value="resend">申请重新发货</option>
-				<option value="suggestion">意见反馈</option>
-			</select>
-      		<label for="order-id">订单编号</label>
-      		<input type="text" name="order-id" id="order-id" value="" class="text ui-widget-content ui-corner-all">
-      		<label for="contact-detail">您的留言</label>
-      		<textarea name="contact-detail" id="contact-detail" cols="20" rows="5"></textarea>
-     </fieldset>
-  </form>
+<div style="position: fixed;z-index: 99999;">
+	<div id="buy-form" title="填写信息" style="font-size:15px; position: fixed;z-index: 999999; display:none;">
+		<div style="position: fixed; top: 0px;left: 0px;width: 500px;height: 350px;overflow:hidden; border:solid 1px rgb(229,229,229); border-radius:8px; background:white;" >
+			<div id="dialog-sub-title"">填写订单信息</div>
+			<div class="buy-form-wrapper-div">
+				<div class="buy-form-left">收货人邮箱</div>
+				<input type="text" id="receive" value="" class="buy-form-input" />
+			</div>
+			<div class="buy-form-wrapper-div">
+				<div class="buy-form-left">电子书名称</div>
+				<div type="text" id="order-name"></div>
+			</div>
+			<div class="buy-form-wrapper-div">
+				<div class="buy-form-left">发货时间</div>
+				<div type="text" id="send-time"></div>
+			</div>
+			<div class="buy-form-wrapper-div" style="border-bottom:double #BBB;">
+				<div class="buy-form-left">价格</div>
+				<div type="text" id="order-price"></div>
+				<span id="price-comment"></span>
+			</div>	
+			
+			<div id="aliPayButton" class="order-button" onclick="buyWithAlipayOrWeixin('alipay')">支付宝支付</div>
+			<div id="weixinButton" class="order-button" onclick="buyWithAlipayOrWeixin('weixin')">微信支付</div>
+			<div id="cancel" class="order-button" onclick="canelBuy()">取 消</div>
+		</div>
+	</div>
 </div>
 
 <div id="header">
@@ -117,7 +101,7 @@ pageEncoding="UTF-8"%>
 			<span class="info-detail-left">电子书格式</span>
 			<img src="./images/pdf_icon.jpg" alt="" width="15" height="15">
 			<span class="info-detail-right">PDF</span>
-			<a target="_blank" href="./reader-download.html"><span class="reader-downloader"> (阅读器下载)</span></a>
+			<a target="_blank" href="./readerDownload.htm"><span class="reader-downloader"> (阅读器下载)</span></a>
 		</div>
 		<div class="info-detail-other-div"><span class="info-detail-left">电子书大小</span><span class="info-detail-right">${book.size}MB</span></div>
 	</div>
@@ -143,7 +127,7 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 		<div class="buy-div">
-			<div class="buy-now-button">立即购买</div>
+			<div class="buy-now-button" onclick="buyNow('${book.title}', '${book.realPrice}')">立即购买</div>
 			<div id="pay-problem" onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes')">支付遇到问题 联系QQ客服?</div>
 		</div>
 	</div>

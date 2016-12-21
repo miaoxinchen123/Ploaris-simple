@@ -154,7 +154,7 @@ pageEncoding="UTF-8"%>
    <c:when test="${page.totalCount > 0}">  
     <c:forEach var="pojo" varStatus="s" items="${products}">
 	<div class="book-item">
-	<a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')"><div class="book-cover-small" style="background-image:url(${pojo.coverUrl};"></div></a>
+	<a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')"><div class="book-cover-small" style="background-image:url(${pojo.coverUrl});"></div></a>
 	<div class="book-info-simple">
 		<div class="info-simple-title"><a href="javascript:void(0)" onclick="bookDetail('${pojo.md5}')">${pojo.title}</a></div>
 		<div class="info-simple-other-div"><span class="info-simple-left">作者</span><span class="info-simple-right">${pojo.authors}</span></div>
@@ -172,7 +172,7 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 			<div class="price-div-right">
-				<div class="buy-now-button" onclick="buyNow('${pojo.md5}','${pojo.srcTitle}','${pojo.authors}','${pojo.realPrice}','${pojo.size}','${pojo.coverUrl}')">立即购买</div>
+				<div class="buy-now-button" onclick="buyNow('${pojo.srcTitle}', '${pojo.realPrice}')">立即购买</div>
 				<div class="view-detail-button" onclick="bookDetail('${pojo.md5}')">查看详情</div>
 			</div>
 		</div>
