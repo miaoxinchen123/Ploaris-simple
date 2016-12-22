@@ -210,7 +210,7 @@
     </dependencies>  
   
     <build>  
-        <finalName>springmvc_hibernate_demo</finalName>  
+        <finalName>ploaris</finalName>  
   
         <plugins>  
             <!-- Run the JUnit unit tests in an isolated classloader -->  
