@@ -76,7 +76,7 @@ public class SearchController {
 			map.put("md5", hit.getId());
 			if(searchOption.equals("title")){
 				map.put("title",content.replaceAll("\'",""));
-				map.put("srcTitle",hit.getSource().get("title"));
+				map.put("srcTitle",hit.getSource().get("title").toString().replaceAll("\'",""));
 			}else{
 				map.put("title", hit.getSource().get("title").toString().replaceAll("\'",""));
 			}
