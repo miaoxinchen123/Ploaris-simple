@@ -17,9 +17,6 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="./css/index.css" />
 <link rel="stylesheet" type="text/css" href="./css/reader.css" />
 
-<script src="./js/jquery-1.12.4.js"></script>
-<script src="./js/jquery-ui.js"></script>
-<script src="./js/account-dialog-control.js"></script>
 </head>
 
 <body>
@@ -36,9 +33,9 @@ pageEncoding="UTF-8"%>
 	<div class="reader-item">
 		<div class="reader-icon" id="pdf-icon"></div>
 		<div class="reader-info">
-			<div class="reader-title">Adobe Reader (V_11.0)</div>
-			<div class="reader-abstract">这是一款多么多么牛逼的软件</div>
-			<div class="reader-format">可用于阅读 PDF 电子书</div>
+			<div class="reader-title">Adobe Reader</div>
+			<div class="reader-abstract">最常用的pdf阅读器</div>
+			<div class="reader-format">我们的电子书大多数都是pdf格式</div>
 			<div class="reader-download-div">
 				<div class="windows-version-download-button">
 					<div class="windows-version-download-button-left"></div>
@@ -57,9 +54,9 @@ pageEncoding="UTF-8"%>
 	<div class="reader-item">
 		<div class="reader-icon" id="calibre-icon"></div>
 		<div class="reader-info">
-			<div class="reader-title">Calibre (V_2.63)</div>
-			<div class="reader-abstract">这是一款多么多么牛逼的软件</div>
-			<div class="reader-format">可用于阅读 PDF 电子书</div>
+			<div class="reader-title">Calibre (V_2.74)</div>
+			<div class="reader-abstract">完整的电子书管理、格式转换、同步等功能</div>
+			<div class="reader-format">可用于阅读pdf, mobi, epub, azw等格式的电子书</div>
 			<div class="reader-download-div">
 				<div class="windows-version-download-button">
 					<div class="windows-version-download-button-left"></div>
@@ -67,7 +64,7 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div class="mac-version-download-button">
 					<div class="mac-version-download-button-left"></div>
-					<div class="mac-version-download-button-right">下载 IOS 版</div>
+					<div class="mac-version-download-button-right">下载 mac 版</div>
 				</div>
 			</div>
 		</div>
@@ -78,17 +75,17 @@ pageEncoding="UTF-8"%>
 	<div class="reader-item">
 		<div class="reader-icon" id="digital-editions-icon"></div>
 		<div class="reader-info">
-			<div class="reader-title">Digital Editions (V_3.0)</div>
-			<div class="reader-abstract">这是一款多么多么牛逼的软件</div>
-			<div class="reader-format">可用于阅读 PDF 电子书</div>
+			<div class="reader-title">Digital Editions (V_2.0)</div>
+			<div class="reader-abstract">常用的轻量级电子书阅读器</div>
+			<div class="reader-format">可用于阅读 epub, pdf等格式的电子书</div>
 			<div class="reader-download-div">
 				<div class="windows-version-download-button">
-					<div class="android-version-download-button-left"></div>
-					<div class="android-version-download-button-right">下载 android 版</div>
+					<div class="windows-version-download-button-left"></div>
+					<div class="windows-version-download-button-right">下载 windows 版</div>
 				</div>
 				<div class="mac-version-download-button">
 					<div class="mac-version-download-button-left"></div>
-					<div class="mac-version-download-button-right">下载 IOS 版</div>
+					<div class="mac-version-download-button-right">下载 mac 版</div>
 				</div>
 			</div>
 		</div>
@@ -99,13 +96,13 @@ pageEncoding="UTF-8"%>
 	<div class="reader-item">
 		<div class="reader-icon" id="ireader-icon"></div>
 		<div class="reader-info">
-			<div class="reader-title">iReader (V_5.3)</div>
-			<div class="reader-abstract">这是一款多么多么牛逼的软件</div>
-			<div class="reader-format">可用于阅读 PDF 电子书</div>
+			<div class="reader-title">iReader (V_6.0)</div>
+			<div class="reader-abstract">手机端最常用的电子书阅读器</div>
+			<div class="reader-format">可用于阅读 多种格式的电子书</div>
 			<div class="reader-download-div">
 				<div class="windows-version-download-button">
-					<div class="android-version-download-button-left"></div>
-					<div class="android-version-download-button-right">下载 android 版</div>
+					<div class="windows-version-download-button-left"></div>
+					<div class="windows-version-download-button-right">下载 windows 版</div>
 				</div>
 				<div class="mac-version-download-button">
 					<div class="mac-version-download-button-left"></div>
