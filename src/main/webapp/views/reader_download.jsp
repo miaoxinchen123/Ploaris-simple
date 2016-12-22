@@ -37,14 +37,18 @@ pageEncoding="UTF-8"%>
 			<div class="reader-abstract">最常用的pdf阅读器</div>
 			<div class="reader-format">我们的电子书大多数都是pdf格式</div>
 			<div class="reader-download-div">
-				<div class="windows-version-download-button">
-					<div class="windows-version-download-button-left"></div>
-					<div class="windows-version-download-button-right">下载 windows 版</div>
-				</div>
-				<div class="mac-version-download-button">
-					<div class="mac-version-download-button-left"></div>
-					<div class="mac-version-download-button-right">下载 mac 版</div>
-				</div>
+				<a href="./readers/arpc.exe" download>
+					<div class="windows-version-download-button">
+						<div class="windows-version-download-button-left"></div>
+						<div class="windows-version-download-button-right">下载 windows 版</div>
+					</div>
+				</a>
+				<a href="./readers/armac.exe" download>
+					<div class="mac-version-download-button">
+						<div class="mac-version-download-button-left"></div>
+						<div class="mac-version-download-button-right">下载 mac 版</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -58,14 +62,18 @@ pageEncoding="UTF-8"%>
 			<div class="reader-abstract">完整的电子书管理、格式转换、同步等功能</div>
 			<div class="reader-format">可用于阅读pdf, mobi, epub, azw等格式的电子书</div>
 			<div class="reader-download-div">
-				<div class="windows-version-download-button">
-					<div class="windows-version-download-button-left"></div>
-					<div class="windows-version-download-button-right">下载 windows 版</div>
-				</div>
-				<div class="mac-version-download-button">
-					<div class="mac-version-download-button-left"></div>
-					<div class="mac-version-download-button-right">下载 mac 版</div>
-				</div>
+				<a href="./readers/calpc.exe" download>
+					<div class="windows-version-download-button">
+						<div class="windows-version-download-button-left"></div>
+						<div class="windows-version-download-button-right">下载 windows 版</div>
+					</div>
+				</a>
+				<a href="./readers/calmac.exe" download>
+					<div class="mac-version-download-button">
+						<div class="mac-version-download-button-left"></div>
+						<div class="mac-version-download-button-right">下载 mac 版</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -79,14 +87,18 @@ pageEncoding="UTF-8"%>
 			<div class="reader-abstract">常用的轻量级电子书阅读器</div>
 			<div class="reader-format">可用于阅读 epub, pdf等格式的电子书</div>
 			<div class="reader-download-div">
-				<div class="windows-version-download-button">
-					<div class="windows-version-download-button-left"></div>
-					<div class="windows-version-download-button-right">下载 windows 版</div>
-				</div>
-				<div class="mac-version-download-button">
-					<div class="mac-version-download-button-left"></div>
-					<div class="mac-version-download-button-right">下载 mac 版</div>
-				</div>
+				<a href="./readers/ae2pc.exe" download>
+					<div class="windows-version-download-button">
+						<div class="windows-version-download-button-left"></div>
+						<div class="windows-version-download-button-right">下载 windows 版</div>
+					</div>
+				</a>
+				<a href="./readers/ae2mac.exe" download>
+					<div class="mac-version-download-button">
+						<div class="mac-version-download-button-left"></div>
+						<div class="mac-version-download-button-right">下载 mac 版</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -100,14 +112,18 @@ pageEncoding="UTF-8"%>
 			<div class="reader-abstract">手机端最常用的电子书阅读器</div>
 			<div class="reader-format">可用于阅读 多种格式的电子书</div>
 			<div class="reader-download-div">
-				<div class="windows-version-download-button">
-					<div class="windows-version-download-button-left"></div>
-					<div class="windows-version-download-button-right">下载 windows 版</div>
-				</div>
-				<div class="mac-version-download-button">
-					<div class="mac-version-download-button-left"></div>
-					<div class="mac-version-download-button-right">下载 IOS 版</div>
-				</div>
+				<a href="http://www.zhangyue.com/products/iReader" target="_blank">
+					<div class="windows-version-download-button">
+						<div class="android-version-download-button-left"></div>
+						<div class="android-version-download-button-right">下载 Android 版</div>
+					</div>
+				</a>
+				<a href="http://www.zhangyue.com/products/iReader" target="_blank">
+					<div class="mac-version-download-button">
+						<div class="mac-version-download-button-left"></div>
+						<div class="mac-version-download-button-right">下载 iOS 版</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>

@@ -101,6 +101,7 @@ public class SearchController {
 			map.put("realPrice", price1);
 			map.put("coverUrl", hit.getSource().get("coverUrl"));
 			map.put("size", hit.getSource().get("size"));
+			map.put("extension", hit.getSource().get("extension"));
 			pageList.add(map);
 		}
 		if(total.intValue()>100){

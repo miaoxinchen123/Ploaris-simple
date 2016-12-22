@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
 <script src="./js/search-box-focus-control.js"></script>
 
 <script>
-	otherHeight = 745;
+	otherHeight = 760;
 	
 	$(function () {
 		$("#search-button-index").on("click", function() {
@@ -71,6 +71,13 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 
+<div style="position: fixed;z-index: 99999;">
+	<div style="position: fixed; top: 25%;right: 0px;width: 167px;height: 290px;overflow:hidden;background-image:url('./images/cebian.png');" >
+		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes');" style="width: 128px; background-repeat:no-repeat; background-position:center; height: 40px; float: right; background-image: url('./images/contact_cebian.png'); margin: 88px 12px 0px 15px; cursor: pointer;"></div>		
+		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=3226966921&site=qq&menu=yes');" style="width: 128px; background-repeat:no-repeat; background-position:center; height: 40px; float: right; background-image: url('./images/contact_cebian.png'); margin: 15px 12px 0px 15px; cursor: pointer;"></div>
+	</div>
+</div>
+
 <div id="header">
 	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
 	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
@@ -100,7 +107,7 @@ pageEncoding="UTF-8"%>
 		<div class="info-detail-other-div">
 			<span class="info-detail-left">电子书格式</span>
 			<img src="./images/pdf_icon.jpg" alt="" width="15" height="15">
-			<span class="info-detail-right">PDF</span>
+			<span class="info-detail-right">${book.extension}</span>
 			<a target="_blank" href="./readerDownload.htm"><span class="reader-downloader"> (阅读器下载)</span></a>
 		</div>
 		<div class="info-detail-other-div"><span class="info-detail-left">电子书大小</span><span class="info-detail-right">${book.size}MB</span></div>

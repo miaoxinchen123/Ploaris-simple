@@ -85,6 +85,7 @@
 			float:left;
 		    border-radius:6px;
 			cursor:pointer;
+			color:white;
 		}
 		.windows-version-download-button-left,
 		.mac-version-download-button-left,
