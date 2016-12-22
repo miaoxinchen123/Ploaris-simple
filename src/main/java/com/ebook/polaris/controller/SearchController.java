@@ -75,10 +75,10 @@ public class SearchController {
 			String content = ElasticsearchUtil.getHighlightFields(hit,searchOption);
 			map.put("md5", hit.getId());
 			if(searchOption.equals("title")){
-				map.put("title",content);
+				map.put("title",content.replaceAll("\'",""));
 				map.put("srcTitle",hit.getSource().get("title"));
 			}else{
-				map.put("title", hit.getSource().get("title"));
+				map.put("title", hit.getSource().get("title").toString().replaceAll("\'",""));
 			}
 			if(searchOption.equals("authors")){
 				map.put("authors",content);
