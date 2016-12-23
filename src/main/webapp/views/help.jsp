@@ -7,13 +7,12 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<meta name="keywords" content="英文电子书,Nile Science,尼罗河,电子书,文献,文献检索,电子书检索,ebook,article"/>
-<meta name="description" content="Nile Science -- 尼罗河拥有庞大的电子书及文献数据库，提供一站式外语电子书文献服务：高效检索，便捷购买，高速下载。">
-<title>Nile Science 英文电子书文献检索平台 帮助中心</title>
+<meta name="keywords" content="英文电子书,Nile Science, 电子书,文献,文献检索,电子书检索,ebook,article"/>
+<meta name="description" content="Nile Science -- 拥有庞大的电子书及文献数据库，提供一站式外语电子书文献服务：高效检索，便捷购买，高速下载。">
+<title>Nile Science 全球最大英文电子书文献检索平台</title>
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="bookmark icon" href="images/favicon.ico">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/ui/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/global.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/help.css" />

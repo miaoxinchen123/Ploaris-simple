@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>搜索结果</title>
+<title>Nile Science 全球最大英文电子书文献检索平台</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico">
 <link rel="bookmark icon" href="<%=request.getContextPath()%>/images/favicon.ico">
 

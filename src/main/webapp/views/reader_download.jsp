@@ -12,7 +12,6 @@ pageEncoding="UTF-8"%>
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="bookmark icon" href="images/favicon.ico">
 
-<link rel="stylesheet" href="./css/ui/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="./css/global.css" />
 <link rel="stylesheet" type="text/css" href="./css/index.css" />
 <link rel="stylesheet" type="text/css" href="./css/reader.css" />
