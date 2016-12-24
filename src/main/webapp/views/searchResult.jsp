@@ -168,7 +168,7 @@ pageEncoding="UTF-8"%>
 		<div class="info-simple-other-div"><span class="info-simple-left">作者</span><span class="info-simple-right">${pojo.authors}</span></div>
 		<div class="info-simple-other-div"><span class="info-simple-left">出版时间</span><span class="info-simple-right">${pojo.year}年</span></div>
 		<div class="info-simple-other-div">
-			<span class="info-simple-left"></span>
+			<span class="info-simple-left">电子书格式</span>
 			<img src="<%=request.getContextPath()%>/images/pdf_icon.jpg" alt="" class="file-format-icon"/>
 			<span class="info-simple-right">${pojo.extension}</span>
 		</div>
