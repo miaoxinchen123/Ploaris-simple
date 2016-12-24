@@ -66,14 +66,15 @@ pageEncoding="UTF-8"%>
 			<div id="aliPayButton" class="order-button" onclick="buyWithAlipayOrWeixin('alipay')">支付宝支付</div>
 			<div id="weixinButton" class="order-button" onclick="buyWithAlipayOrWeixin('weixin')">微信支付</div>
 			<div id="cancel" class="order-button" onclick="canelBuy()">取 消</div>
+			<div id="order-md5" style="display:none;"></div>
 		</div>
 	</div>
 </div>
 
 <div style="position: fixed;z-index: 99999;">
 	<div style="position: fixed; top: 25%;right: 0px;width: 167px;height: 290px;overflow:hidden;background-image:url('./images/cebian.png');" >
-		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes');" style="width: 128px; background-repeat:no-repeat; background-position:center; height: 40px; float: right; background-image: url('./images/contact_cebian.png'); margin: 88px 12px 0px 15px; cursor: pointer;"></div>		
-		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=3226966921&site=qq&menu=yes');" style="width: 128px; background-repeat:no-repeat; background-position:center; height: 40px; float: right; background-image: url('./images/contact_cebian.png'); margin: 15px 12px 0px 15px; cursor: pointer;"></div>
+		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes');" style="width: 128px; height: 40px; float: right; margin: 88px 12px 0px 15px; cursor: pointer;"></div>		
+		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=3226966921&site=qq&menu=yes');" style="width: 128px; height: 40px; float: right; margin: 15px 12px 0px 15px; cursor: pointer;"></div>
 	</div>
 </div>
 
@@ -165,6 +166,13 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 </div>
-
+<script>	
+if(isMobile() == true) {
+	document.getElementById("weixinButton").style.visibility="hidden";
+}
+else {
+	document.getElementById("weixinButton").style.visibility="visible";
+}
+</script>
 </body>
 </html>
