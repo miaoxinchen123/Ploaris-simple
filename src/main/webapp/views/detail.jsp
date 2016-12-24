@@ -114,7 +114,7 @@ pageEncoding="UTF-8"%>
 	</div>
 	
 	<div class="book-info-detail">
-		<div class="info-detail-title">${book.title}</div>
+		<div class="info-detail-title" id="bookTitle">${book.title}</div>
 		<div class="info-detail-other-div"><span class="info-detail-left">作者</span><span class="info-detail-right">${book.authors}</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">出版时间</span><span class="info-detail-right">${book.year}年</span></div>
 		<div class="info-detail-other-div"><span class="info-detail-left">出版社</span><span class="info-detail-right">${book.publisher}</span></div>
@@ -134,7 +134,7 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 		<div class="buy-div">
-			<div class="buy-now-button" onclick="buyNow('${book.title}', '${book.realPrice}')">立即购买</div>
+			<div class="buy-now-button" onclick="buyNow('${book.md5}', document.getElementById('bookTitle').innerText, '${book.realPrice}')">立即购买</div>
 			<div id="pay-problem" onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes')">支付遇到问题 联系QQ客服?</div>
 		</div>
 	</div>
