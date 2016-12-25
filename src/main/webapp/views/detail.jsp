@@ -67,6 +67,7 @@ pageEncoding="UTF-8"%>
 			<div id="weixinButton" class="order-button" onclick="buyWithAlipayOrWeixin('weixin')">微信支付</div>
 			<div id="cancel" class="order-button" onclick="canelBuy()">取 消</div>
 			<div id="order-md5" style="display:none;"></div>
+			<div id="order-format" style="display:none;"></div>
 		</div>
 	</div>
 </div>
@@ -134,7 +135,7 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 		<div class="buy-div">
-			<div class="buy-now-button" onclick="buyNow('${book.md5}', document.getElementById('bookTitle').innerText, '${book.realPrice}')">立即购买</div>
+			<div class="buy-now-button" onclick="buyNow('${book.md5}', document.getElementById('bookTitle').innerText, '${book.extension}', '${book.realPrice}')">立即购买</div>
 			<div id="pay-problem" onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes')">支付遇到问题 联系QQ客服?</div>
 		</div>
 	</div>

@@ -116,6 +116,7 @@ pageEncoding="UTF-8"%>
 			<div id="weixinButton" class="order-button" onclick="buyWithAlipayOrWeixin('weixin')">微信支付</div>
 			<div id="cancel" class="order-button" onclick="canelBuy()">取 消</div>
 			<div id="order-md5" style="display:none;"></div>
+			<div id="order-format" style="display:none;"></div>
 		</div>
 	</div>
 </div>
@@ -158,7 +159,7 @@ pageEncoding="UTF-8"%>
 		<span style="padding-left:152px;">以下呈现的是“${searchInput}”的精选结果</span>
 	</div>
 </div>
-<c:choose>  
+<c:choose>
    <c:when test="${page.totalCount > 0}">  
     <c:forEach var="pojo" varStatus="s" items="${products}">
 	<div class="book-item">
@@ -180,7 +181,7 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 			<div class="price-div-right">
-				<div class="buy-now-button" onclick="buyNow('${pojo.md5}', '${pojo.srcTitle}', '${pojo.realPrice}')">立即购买</div>
+				<div class="buy-now-button" onclick="buyNow('${pojo.md5}', '${pojo.srcTitle}', '${pojo.extension}', '${pojo.realPrice}')">立即购买</div>
 				<div class="view-detail-button" onclick="bookDetail('${pojo.md5}')">查看详情</div>
 			</div>
 		</div>

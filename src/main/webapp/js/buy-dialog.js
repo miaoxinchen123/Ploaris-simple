@@ -1,7 +1,7 @@
 /*
  * 立即购买
  */
- function buyNow(md5, title, price){
+ function buyNow(md5, title, format, price){
 	var currentTime = new Date();
 	var year = (new Date(currentTime.valueOf() + 1000 * 1800)).getYear() + 1900;
 	var month = (new Date(currentTime.valueOf() + 1000 * 1800)).getMonth() + 1;
@@ -13,6 +13,7 @@
  	document.getElementById("order-name").innerText = title;
  	document.getElementById("order-price").innerText = "¥ " + price;
  	document.getElementById("order-md5").innerText = md5;
+ 	document.getElementById("order-format").innerText = format;
  	
 	var winWidth;
 	var winHeight;
@@ -57,6 +58,7 @@ function buyWithAlipayOrWeixin(type) {
 	$.post("http://nile.nbkyzl.com:9000/getUserInfo", {
 		orderId: id,
 		md5: document.getElementById("order-md5").innerText,
+		title: document.getElementById("order-name").innerText + "." + document.getElementById("order-format").innerText,
 		email: $("#receive").val()
 	});
 	
