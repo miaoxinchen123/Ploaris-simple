@@ -24,6 +24,9 @@ public class EBookDto {
 	private String extension;
 	private BigDecimal price;
 	private BigDecimal realPrice;
+	private boolean readable;
+	private boolean available;
+	private boolean exist;
 	
 	public EBookDto(){
 		
@@ -151,5 +154,22 @@ public class EBookDto {
 	public void setRealPrice(BigDecimal price1) {
 		this.realPrice = price1;
 	}
-
+	public boolean isReadable() {
+		return readable;
+	}
+	public void setReadable(boolean readable) {
+		this.readable = readable;
+	}
+	public boolean isAvailable() {
+		return available;
+	}
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+	public boolean isExist() {
+		return exist;
+	}
+	public void setExist(boolean exist) {
+		this.exist = exist;
+	}
 }

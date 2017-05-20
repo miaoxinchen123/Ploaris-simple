@@ -6,6 +6,9 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<head>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name="keywords" content="英文电子书,Nile Science,电子书,文献,文献检索,电子书检索,ebook,article"/>
 <meta name="description" content="Nile Science -- 拥有庞大的电子书及文献数据库，提供一站式外语电子书文献服务：高效检索，便捷购买，高速下载。">
@@ -20,18 +23,24 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="./css/buy-form.css" />
 
 <script src="./js/jquery-1.12.4.js"></script>
-<script src="./js/footer-margin-control.js"></script>
 <script src="./js/buy-dialog.js"></script>
 <script src="./js/pcjssdk.3.0.js"></script>
 <script src="./js/search-box-focus-control.js"></script>
 
 <script>
-	otherHeight = 760;
-	
 	$(function () {
 		$("#search-button-index").on("click", function() {
 			var searchText = $("#searchInput").val();
 			if(searchText.length != 0 &&  searchText != "More than 3 million books are available") {
+				$("#f_ation").submit();
+			}
+		});
+		
+		$("#search-button-index_2").on("click", function() {
+			var searchText_2 = $("#searchInput_2").val();
+			if(searchText_2.length != 0 &&  searchText_2 != "More than 3 million books are available") {
+				$("#searchOption").val($("#searchOption_2").val());
+				$("#searchInput").val($("#searchInput_2").val());
 				$("#f_ation").submit();
 			}
 		});
@@ -90,18 +99,21 @@ pageEncoding="UTF-8"%>
 	<a href="<%=request.getContextPath()%>/gotoIndex.htm"><img id="search-header-logo" src="<%=request.getContextPath()%>/images/logo-small-on-list-page.png" alt="Nile Science"></img></a>
 	<div class="search-box">
 		<form id="f_ation" name="f_ation" action="indexSearch.htm" method="post">
-		<select class="search-option" id="searchOption" name="searchOption">
-		    <option value="title">电子书标题</option>
-			<option value="authors">电子书作者</option>
-			<option value="isbn">ISBN 号码</option>
-		</select>
-		<input type="text" id="searchInput" name="searchInput" class="search-input" value="More than 3 million books are available" style="height:33px;"/>
-		<div class="search-button" id="search-button-index">搜索</div>
+			<select class="search-option" id="searchOption" name="searchOption">
+			    <option value="title">电子书标题</option>
+				<option value="authors">电子书作者</option>
+				<option value="isbn">ISBN 号码</option>
+			</select>
+			<input type="text" id="searchInput" name="searchInput" class="search-input" value="More than 3 million books are available" style="height:33px;"/>
+			<div class="search-button" id="search-button-index">搜索</div>
 		</form>
 	</div>
 </div>
 
 <div class="book-item-detail">
+	<div id="readable" style="display:none;">${book.readable}</div>
+	<div id="exist" style="display:none;">${book.exist}</div>
+	<div id="available" style="display:none;">${book.available}</div>
 	<div class="book-file-detail">
 		<div class="book-cover" style="background-image:url(${book.coverUrl});"></div>
 		
@@ -141,6 +153,37 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 
+<div style="width:1000px; margin:0px auto;">
+	<a id="pre-reader-file" href=""><div id="reader-1" style="cursor:pointer; text-align: center;font-size: 24px;font-weight: 100;font-family: 'Microsoft Yahei', '微软雅黑';margin: 20px 0px;">您的浏览器不支持在线试读，点击此处下载<span style="color:#C40;">PDF文件</span>进行试读</div></a>
+	
+	<div id="reader-2" style="text-align: center;font-size: 24px;font-weight: 100;font-family: 'Microsoft Yahei', '微软雅黑';margin: 20px 0px;">试读文件（提供该书的随机几页进行试读）</div>
+	<div id="pre-reader-wrapper" style="width:800px;height:900px; margin:0px auto; ">
+		<iframe id="pre-reader" src="" style="width:800px; height:900px;"></iframe>
+	</div>
+</div>
+
+<div id="center-logo" style="border-top: solid 1px rgb(220,220,220);margin-top: 0px;padding-top: 30px; background-position:center 30px;"></div>
+<div id="page-center">
+	<div class="search-box">
+		<form id="f_ation_2" name="f_ation_2">
+			<select class="search-option" id="searchOption_2" name="searchOption_2">
+			    <option value="title">电子书标题</option>
+				<option value="authors">电子书作者</option>
+				<option value="isbn">ISBN 号码</option>
+			</select>
+			<input type="text" id="searchInput_2" name="searchInput_2" class="search-input" value="More than 3 million books are available"/>
+			<div class="search-button" id="search-button-index_2">搜索</div>
+		</form>
+	</div>
+</div>
+
+<div style="width:1000px; margin:0px auto;">
+	<img src="./images/detail-4.png"/>
+	<img src="./images/detail-3.png"/>
+	<img src="./images/detail-1.png"/>
+	<img src="./images/detail-2.png"/>
+</div>
+
 <div id="footer">
 	<div id="footer-wrapper">
 		<div style="width:900px; margin-left:auto; margin-right:auto;">
@@ -167,7 +210,24 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 </div>
-<script>	
+<script>
+//var md5 = window.location.search.split("MD5=")[1].split("&")[0];
+var md5 = "0a0cd63f4934786e120ee525c90cac3f";
+var fileUrl = "abstractions/" + md5.substr(0, 2) + "/" + md5 + ".pdf";
+if (!!window.ActiveXObject || "ActiveXObject" in window) {
+	alert("ie");
+	document.getElementById("reader-1").style.display = "block";
+	document.getElementById("reader-2").style.display = "none";
+	document.getElementById("pre-reader-wrapper").style.display = "none";
+	document.getElementById("pre-reader-file").setAttribute("href", fileUrl);
+}
+else {
+	document.getElementById("reader-1").style.display = "none";
+	document.getElementById("reader-2").style.display = "block";
+	document.getElementById("pre-reader-wrapper").style.display = "block";
+	document.getElementById("pre-reader").setAttribute("src", fileUrl);
+}
+
 if(isMobile() == true) {
 	document.getElementById("weixinButton").style.visibility="hidden";
 }

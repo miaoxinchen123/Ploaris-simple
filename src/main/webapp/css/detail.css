@@ -148,3 +148,7 @@
 	   	cursor: pointer;
 	   	text-align: right;
     }
+    
+#reader-1:hover {
+	color:#C40;
+}

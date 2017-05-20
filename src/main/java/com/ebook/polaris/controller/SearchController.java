@@ -183,6 +183,9 @@ public class SearchController {
 		BigDecimal size = new BigDecimal(bookDetail.get("size").toString());
 		ebookDto.setSize(size.divide(new BigDecimal(1024*1024)).setScale(2,BigDecimal.ROUND_HALF_UP));
 		
+		ebookDto.setExist(bookDetail.get("exist").toString().equals("true") ? true : false);
+		ebookDto.setAvailable(bookDetail.get("available").toString().equals("true") ? true : false);
+		ebookDto.setReadable(bookDetail.get("readable").toString().equals("true") ? true : false);
 		
 		BigDecimal price1 = new BigDecimal(0);
 		if(bookDetail.get("pages")!=null && bookDetail.get("pages")!=""){
@@ -194,7 +197,6 @@ public class SearchController {
 			BigDecimal b = new BigDecimal(price);  
 		    price1 = b.setScale(2,BigDecimal.ROUND_HALF_UP);  
 		}
-		
 		
 		ebookDto.setPrice(price1.multiply(new BigDecimal(1.8)).setScale(2,BigDecimal.ROUND_HALF_UP));
 		ebookDto.setRealPrice(price1);

@@ -181,7 +181,7 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 			<div class="price-div-right">
-				<div class="buy-now-button" onclick="buyNow('${pojo.md5}', '${pojo.srcTitle}', '${pojo.extension}', '${pojo.realPrice}')">立即购买</div>
+				<div style="visibility:hidden;" class="buy-now-button" onclick="buyNow('${pojo.md5}', '${pojo.srcTitle}', '${pojo.extension}', '${pojo.realPrice}')">立即购买</div>
 				<div class="view-detail-button" onclick="bookDetail('${pojo.md5}')">查看详情</div>
 			</div>
 		</div>

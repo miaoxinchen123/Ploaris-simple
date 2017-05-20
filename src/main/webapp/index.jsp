@@ -41,17 +41,16 @@ $(function () {
 </div>
 
 <div id="center-logo"></div>
-
 <div id="page-center">
 	<div class="search-box">
 		<form id="f_ation" name="f_ation" action="indexSearch.htm" method="post">
-		<select class="search-option" id="searchOption" name="searchOption">
-		    <option value="title">电子书标题</option>
-			<option value="authors">电子书作者</option>
-			<option value="isbn">ISBN 号码</option>
-		</select>
-		<input type="text" id="searchInput" name="searchInput" class="search-input" value="More than 3 million books are available"/>
-		<div class="search-button" id="search-button-index">搜索</div>
+			<select class="search-option" id="searchOption" name="searchOption">
+			    <option value="title">电子书标题</option>
+				<option value="authors">电子书作者</option>
+				<option value="isbn">ISBN 号码</option>
+			</select>
+			<input type="text" id="searchInput" name="searchInput" class="search-input" value="More than 3 million books are available"/>
+			<div class="search-button" id="search-button-index">搜索</div>
 		</form>
 	</div>
 </div>
