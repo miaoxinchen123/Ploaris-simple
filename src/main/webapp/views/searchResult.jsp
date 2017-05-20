@@ -159,6 +159,7 @@ pageEncoding="UTF-8"%>
 		<span style="padding-left:152px;">以下呈现的是“${searchInput}”的精选结果</span>
 	</div>
 </div>
+
 <c:choose>
    <c:when test="${page.totalCount > 0}">  
     <c:forEach var="pojo" varStatus="s" items="${products}">
