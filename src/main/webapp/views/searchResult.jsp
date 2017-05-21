@@ -127,14 +127,14 @@ pageEncoding="UTF-8"%>
 
 <div style="position: fixed;z-index: 99999;">
 	<div style="position: fixed; top: 25%;right: 0px;width: 167px;height: 290px;overflow:hidden;background-image:url('./images/cebian.png');" >
-		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes');" style="width: 128px; height: 40px; float: right; margin: 88px 12px 0px 15px; cursor: pointer;"></div>		
+		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes');" style="width: 128px; height: 40px; float: right; margin: 88px 12px 0px 15px; cursor: pointer;"></div>		
 		<div onclick="window.open('http://wpa.qq.com/msgrd?v=3&uin=3226966921&site=qq&menu=yes');" style="width: 128px; height: 40px; float: right; margin: 15px 12px 0px 15px; cursor: pointer;"></div>
 	</div>
 </div>
 
 <div id="header">
 	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
+	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">QQ咨询</a></div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
@@ -232,7 +232,7 @@ pageEncoding="UTF-8"%>
 <c:otherwise>
 	<div class="book-item">
 		对不起，没有找到任何电子书。<br/><br/>
-		小技巧：（1）减少搜索的词；（2）去掉逗号、冒号等特殊字符；（3）<a style="color:#C40000; text-decoration:underline;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">骚扰QQ客服</a>帮您搜索。
+		小技巧：（1）减少搜索的词；（2）去掉逗号、冒号等特殊字符；（3）<a style="color:#C40000; text-decoration:underline;" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">骚扰QQ客服</a>帮您搜索。
 	</div>
 </c:otherwise>  
 </c:choose>  
@@ -254,9 +254,9 @@ pageEncoding="UTF-8"%>
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售前客服</a></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售后客服</a></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">意见反馈</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">QQ售前客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">QQ售后客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">意见反馈</a></div>
 			</div>
 			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>

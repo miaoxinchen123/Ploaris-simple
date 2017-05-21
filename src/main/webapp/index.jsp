@@ -35,7 +35,7 @@ $(function () {
 <body>
 <div id="header">
 	<span id="head-username"></span><div id="welcome">欢迎到<a href="<%=request.getContextPath()%>/index.jsp"><img id="head-logo" src="./images/head-logo.png" alt="Nile Science"></a></div>
-	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ咨询</a></div>
+	<div id="contact-us"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">QQ咨询</a></div>
 	<div id="help-me"><a target="_blank" href="./help.htm">帮助中心</a></div>
 	<div id="reader-download"><a target="_blank" href="./readerDownload.htm">阅读器下载</a></div>
 </div>
@@ -73,9 +73,9 @@ $(function () {
 			</div>
 			<div class="footer-navigator-wrapper">
 				<div class="footer-navigator-head" id="footer-contact-us"><span>联系我们</span></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售前客服</a></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">QQ售后客服</a></div>
-				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2767502394&site=qq&menu=yes">意见反馈</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-search"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">QQ售前客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-resend"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">QQ售后客服</a></div>
+				<div class="footer-navigator-menu" id="footer-contact-us-suggestion"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3063791500&site=qq&menu=yes">意见反馈</a></div>
 			</div>
 			<a href="./index.jsp"><div id="footer-image"></div></a>
 		</div>
