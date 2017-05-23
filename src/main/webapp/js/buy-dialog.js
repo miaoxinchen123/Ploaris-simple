@@ -11,7 +11,7 @@
 	
 	document.getElementById("send-time").innerText = month + "月" + date + "日" + hour + "时" + minute + "分之前发至邮箱";
  	document.getElementById("order-name").innerText = title;
- 	document.getElementById("order-price").innerText = "¥ " + price;
+ 	document.getElementById("order-price").innerText = "¥" + price;
  	document.getElementById("order-md5").innerText = md5;
  	document.getElementById("order-format").innerText = format;
  	
@@ -44,7 +44,7 @@ function canelBuy() {
 }
 
 
-function buyWithAlipayOrWeixin(type) {
+function buyWithAlipayOrWeixin(banktype) {
 	if($("#receive").val().length > 100 
 			|| $("#receive").val().length < 4
 			|| $("#receive").val().indexOf(".") < 0 
@@ -55,38 +55,58 @@ function buyWithAlipayOrWeixin(type) {
 	
 	var id = Date.now();
 	
-	$.post("http://nile.nbkyzl.com:9000/getUserInfo", {
+	$.post("http://122.112.212.219:9000/receiveOrderInfo", {
 		orderId: id,
-		md5: document.getElementById("order-md5").innerText,
-		title: document.getElementById("order-name").innerText + "." + document.getElementById("order-format").innerText,
-		email: $("#receive").val()
+		receive: $("#receive").val(),
+		address: "",
+		tel: "",
+		emergency: "false",
+		qq: "",
+		name: "ebook",
+		price: $("#order-price").html().split("¥")[1] 
 	});
 	
-	if(type == "weixin") {
-		FUQIANLAPC.init({
-			isCashierDesk: false,
-			appId: '97rpOtHVU1LjJEoy6Pbp0w',
-			clientIp: '127.0.0.1',
-			orderId: id, //订单号，
-			merchId: 'm1609280024',
-			channel: 'wx_pay_pub_scan',
-			amount: document.getElementById("order-price").innerText.split("¥ ")[1],
-			subject: 'NileScienceEbook',
-			notifyUrl: 'http://www.nbkyzl.com/listen.html'	//妙妙你修改这里，然后后台监听就行。这个url随便你修改
-		});
+	if(banktype == "weixin" && isMobile() == true) {
+		window.location.href = "http://pay.nbkyzl.com/pay.html?" +
+				"channel=3" + 
+				"&order_id=" + id + 
+				"&money=" + $("#order-price").html().split("¥")[1] +  
+				"&subject=高清原版电子书" + 
+				"&return_url=http://nilescience.nbkyzl.com" +
+				"&notify_url=http://nilescience.nbkyzl.com/WeixinPayNotify";
+	}
+	else if(banktype == "weixin" && isMobile() == false) {
+		window.location.href = "http://pay.nbkyzl.com/pay.html?" +
+				"channel=3" + 
+				"&order_id=" + id + 
+				"&money=" + $("#order-price").html().split("¥")[1] + 
+				"&subject=高清原版电子书" + 
+				"&return_url=http://nilescience.nbkyzl.com" +
+				"&notify_url=http://nilescience.nbkyzl.com/WeixinPayNotify";
+	}
+	else if(banktype == "alipay" && isMobile() == true) {
+		window.location.href = "http://pay.nbkyzl.com/pay.html?" +
+				"channel=2" + 
+				"&order_id=" + id + 
+				"&money=" + $("#order-price").html().split("¥")[1] + 
+				"&subject=高清原版电子书" + 
+				"&return_url=http://nilescience.nbkyzl.com" +
+				"&notify_url=http://nilescience.nbkyzl.com/AlipayWapNotify";
+	}
+	else if(banktype == "alipay" && isMobile() == false) {
+		window.location.href = "http://pay.nbkyzl.com/pay.html?" +
+				"channel=1" + 
+				"&order_id=" + id + 
+				"&money=" + $("#order-price").html().split("¥")[1] + 
+				"&subject=高清原版电子书" + 
+				"&return_url=http://nilescience.nbkyzl.com" +
+				"&notify_url=http://nilescience.nbkyzl.com/AlipayWapNotify";
+	}
+	else if(isMobile() == true) {
+		
 	}
 	else {
-		FUQIANLAPC.init({
-			isCashierDesk: false,
-			appId: '97rpOtHVU1LjJEoy6Pbp0w',
-			clientIp: '127.0.0.1',
-			orderId: id, //订单号，
-			merchId: 'm1609280024',
-			channel: 'ali_direct_pay_pc',
-			amount: document.getElementById("order-price").innerText.split("¥ ")[1],
-			subject: 'NileScienceEbook',
-			notifyUrl: 'http://www.nbkyzl.com/listen.html'	//妙妙你修改这里，然后后台监听就行。这个url随便你修改
-		});
+		
 	}
 }
 

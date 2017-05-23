@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
 						<div class="windows-version-download-button-right">下载 windows 版</div>
 					</div>
 				</a>
-				<a href="./readers/armac.exe" download>
+				<a href="./readers/armac.dmg" download>
 					<div class="mac-version-download-button">
 						<div class="mac-version-download-button-left"></div>
 						<div class="mac-version-download-button-right">下载 mac 版</div>
@@ -60,13 +60,13 @@ pageEncoding="UTF-8"%>
 			<div class="reader-abstract">完整的电子书管理、格式转换、同步等功能</div>
 			<div class="reader-format">可用于阅读pdf, mobi, epub, azw等格式的电子书</div>
 			<div class="reader-download-div">
-				<a href="./readers/calpc.exe" download>
+				<a href="./readers/calpc.msi" download>
 					<div class="windows-version-download-button">
 						<div class="windows-version-download-button-left"></div>
 						<div class="windows-version-download-button-right">下载 windows 版</div>
 					</div>
 				</a>
-				<a href="./readers/calmac.exe" download>
+				<a href="./readers/calmac.dmg" download>
 					<div class="mac-version-download-button">
 						<div class="mac-version-download-button-left"></div>
 						<div class="mac-version-download-button-right">下载 mac 版</div>
@@ -91,7 +91,7 @@ pageEncoding="UTF-8"%>
 						<div class="windows-version-download-button-right">下载 windows 版</div>
 					</div>
 				</a>
-				<a href="./readers/ae2mac.exe" download>
+				<a href="./readers/ae2mac.dmg" download>
 					<div class="mac-version-download-button">
 						<div class="mac-version-download-button-left"></div>
 						<div class="mac-version-download-button-right">下载 mac 版</div>

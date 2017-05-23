@@ -222,7 +222,7 @@ if(document.getElementById("available").innerHTML != "true") {
 	document.getElementById("detail-buy-button").style.backgroundColor = "#DDD";
 	document.getElementById("detail-buy-button").onclick = function tst(){ 
 		alert('该书暂时缺货，请联系客服。'); 
-	} 
+	}
 }
 
 if(document.getElementById("readable").innerHTML != "true") {
@@ -231,8 +231,8 @@ if(document.getElementById("readable").innerHTML != "true") {
 	document.getElementById("pre-reader-wrapper").style.display = "none";
 }
 else {
-	//var md5 = window.location.search.split("MD5=")[1].split("&")[0];
-	var md5 = "0a0cd63f4934786e120ee525c90cac3f";
+	var md5 = window.location.search.split("MD5=")[1].split("&")[0];
+	//var md5 = "0a0cd63f4934786e120ee525c90cac3f";
 	var fileUrl = "abstractions/" + md5.substr(0, 2) + "/" + md5 + ".pdf";
 	if (!!window.ActiveXObject || "ActiveXObject" in window) {
 		document.getElementById("reader-1").style.display = "block";
